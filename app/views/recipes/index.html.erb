@@ -1,30 +1,32 @@
-<div class="banner">
-  <div class="row justify-content-center">
-    <div class="col-12">
-        <%= button_tag(type: 'submit', class: "btn search-button") do %>
-          <i class="fa fa-search"></i>
-        <% end %>
-    </div>
-  </div>
-  <div class="row justify-content-center">
+<div class="banner col-12">
+  <div class="justify-content-center">
     <div class="col-lg-auto">
       <h1 class="text-center">Cookbud 🚀</h1>
+      <%= link_to 'Search Recipes', search_path, class: 'btn btn-primary' %>
     </div>
   </div>
 </div>
 
 
-<div class="card" style="width: 18rem;">
-  <%# <%= image_tag("recipe_image.jpg", class: "card-img-top", alt: "Recipe Image") %>
-  <div class="card-body">
-    <h5 class="card-title">Recipe Title</h5>
-    <p class="card-text">Short description of the recipe.</p>
+
+
+<div class="container">
+<% @recipes.each do |recipe| %>
+  <div class="row space">
+    <div class="card">
+      <%= image_tag("burger.jpg", class: "card-img-top", alt: "Burger Image") %>
+      <div class="card-body">
+        <h3 class="card-title"><%= recipe.name %></h3>
+        <p class="card-text"><%= recipe.description[0, 30] %></p>
+      </div>
+      <div class="d-flex justify-content-between">
+        <p class="list-group-item">Level: <%= recipe.difficulty %></p>
+        <p class="list-group-item">⏲️ <%= recipe.duration %></p>
+      </div>
+      <div class="card-body">
+        <%# <%= link_to 'View Recipe', recipe_path, class: 'card-link' %>
+      </div>
+    </div>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">Difficulty: Easy</li>
-    <li class="list-group-item">Duration: 30 minutes</li>
-  </ul>
-  <div class="card-body">
-    <%# <%= link_to 'View Recipe', recipe_path, class: 'card-link' %>
-  </div>
+  <% end %>
 </div>
