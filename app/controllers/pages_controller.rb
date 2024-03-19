@@ -9,5 +9,7 @@ class PagesController < ApplicationController
   end
 
   def profile
+    @user = current_user
+    @preference = @user.preference
   end
 end
