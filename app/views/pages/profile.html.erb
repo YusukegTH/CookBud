@@ -1,1 +1,40 @@
-<h1>Hello profile page</h1>
+<div class="container">
+  <h2>My profile</h2>
+  <div class="container">
+    <p>Username: <%= @user.username %></p>
+    <p>First name: <%= @user.first_name %></p>
+    <p>Last name: <%= @user.last_name %></p>
+    <p>Email: <%= @user.email %></p>
+  </div>
+
+  <h2>My preferences</h2>
+  <div class="container">
+    <h3>Cooking Level</h3>
+    <p> <%= @preference.level.capitalize %> </p>
+    <h3>Appliances</h3>
+    <ul>
+      <% @preference.appliances.each do |appliance| %>
+        <li> <%= appliance.capitalize %> </li>
+      <% end %>
+    </ul>
+    <h3>Ingredients</h3>
+    <ul>
+      <% @preference.ingredients.each do |ingredient| %>
+        <li> <%= ingredient.capitalize %> </li>
+      <% end %>
+    </ul>
+    <h3>Diet</h3>
+    <ul>
+      <% @preference.diet.each do |diet| %>
+        <li> <%= diet.capitalize %> </li>
+      <% end %>
+    </ul>
+    <h3>Allergies</h3>
+    <ul>
+      <% @preference.allergies.each do |allergy| %>
+        <li> <%= allergy.capitalize %> </li>
+      <% end %>
+    </ul>
+  </div>
+
+</div>
