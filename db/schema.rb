@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_03_19_115241) do
+ActiveRecord::Schema[7.1].define(version: 2024_03_19_125646) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -65,16 +65,18 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_115241) do
 
   create_table "recipes", force: :cascade do |t|
     t.string "name"
-    t.text "description", default: [], array: true
-    t.text "ingredients", default: [], array: true
-    t.text "appliances", default: [], array: true
-    t.text "instructions", default: [], array: true
+    t.string "description", default: "{}"
+    t.string "ingredients", default: "{}"
+    t.string "appliances", default: "{}"
+    t.string "instructions", default: "{}"
     t.integer "duration"
     t.string "difficulty"
-    t.text "diet", default: [], array: true
+    t.string "diet", default: "{}"
     t.string "photo"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["user_id"], name: "index_recipes_on_user_id"
   end
 
   create_table "reviews", force: :cascade do |t|
@@ -108,6 +110,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_03_19_115241) do
   add_foreign_key "bookmarks", "recipes"
   add_foreign_key "bookmarks", "users"
   add_foreign_key "preferences", "users"
+  add_foreign_key "recipes", "users"
   add_foreign_key "reviews", "recipes"
   add_foreign_key "reviews", "users"
 end
