@@ -12,11 +12,12 @@ allergies = ["peanuts", "dairy", "gluten", "shellfish", "soy", "eggs", "wheat"]
 level = ["beginner", "intermediate", "advanced"]
 instructions = ["boil", "fry", "bake", "microwave", "blend", "roast"]
 
+
 i = 1
 
 3.times do
   user_attributes = {
-    email: "email#{i}@email.com",
+    email: "email#{i}@example.com",
     password: "password#{i}",
     first_name: "first_name#{i}",
     last_name: "last_name#{i}",

@@ -3,6 +3,7 @@ class Recipe < ApplicationRecord
   has_one_attached :image
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
+  has_many :users, through: :bookmarks
 
   # Validations
   validates :name, presence: true
