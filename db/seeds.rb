@@ -2,8 +2,10 @@
 puts 'Destroying existing records...'
 User.destroy_all
 
+appliances = ["stove", "microwave"]
+
 # Method to create a user with preference, recipes, bookmarks, reviews, and posts
-def create_user(email, password, first_name, last_name, username, preference_attrs, recipes_attrs)
+def create_user(email, password, first_name, last_name, username, preference_attrs)
   user = User.create!(
     email: email,
     password: password,
@@ -11,11 +13,8 @@ def create_user(email, password, first_name, last_name, username, preference_att
     last_name: last_name,
     username: username
   )
-  user.create_preference(preference_attrs)
-  recipes_attrs.each do |recipe_attrs|
-    user.recipes.create!(recipe_attrs)
-  end
-  user
+  user_preference = Preference.create!(preference_attrs)
+  user.preference = user_preference
 end
 
 # Seed data
@@ -58,19 +57,7 @@ users_data = [
       diet: 'Vegan',
       allergies: 'Peanuts',
       level: 'Beginner'
-    },
-    recipes_attrs: [
-      {
-        name: 'Vegan Smoothie',
-        description: 'A delicious and nutritious vegan smoothie.',
-        ingredients: 'Banana, spinach, almond milk',
-        appliances: 'Blender',
-        instructions: '1. Combine all ingredients in a blender...',
-        duration: '10 minutes',
-        difficulty: 'Easy',
-        diet: 'Vegan'
-      }
-    ]
+    }
   }
 ]
 
@@ -82,9 +69,22 @@ users_data.each do |user_data|
     user_data[:first_name],
     user_data[:last_name],
     user_data[:username],
-    user_data[:preference_attrs],
-    user_data[:recipes_attrs]
+    user_data[:preference_attrs]
   )
 end
+
+# create loop i
+    # create a preference (Preference.create)
+    # create a user (User.new)
+    # user.preference = preference
+    # user.save
+    # create a recipe
+    # create a bookmark for this recipe and user
+    # create a review for this recipe and user
+
+# Seed data
+# users_data = [
+#   {
+#     email: '
 
 puts 'Seeding completed successfully!'
