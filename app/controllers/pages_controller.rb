@@ -5,6 +5,7 @@ class PagesController < ApplicationController
   end
 
   def search
+    @preference = current_user.preference
   end
 
   def profile
