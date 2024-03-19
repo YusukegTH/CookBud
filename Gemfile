@@ -2,6 +2,12 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
+# cloudinary is a cloud service that offers a solution to a web application's entire image management pipeline [https://cloudinary.com]
+gem "cloudinary"
+
+# dotenv is a zero-dependency module that loads environment variables from a .env file into ENV when the environment is bootstrapped [
+gem "dotenv-rails"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3", ">= 7.1.3.2"
 
