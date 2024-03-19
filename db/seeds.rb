@@ -1,91 +1,66 @@
 # Destroy all existing records
 puts 'Destroying existing records...'
 User.destroy_all
+Preference.destroy_all
+Recipe.destroy_all
+Review.destroy_all
 
-appliances = ["stove", "microwave"]
+appliances = ["stove", "microwave", "hot plate", "oven", "blender", "toaster"]
+ingredients = ["tomatoes", "potatoes", "salt", "pepper", "rice", "pasta"]
+diet = ["vegetarian", "vegan", "pescatarian", "keto", "paleo", "gluten-free"]
+allergies = ["peanuts", "dairy", "gluten", "shellfish", "soy", "eggs", "wheat"]
+level = ["beginner", "intermediate", "advanced"]
+instructions = ["boil", "fry", "bake", "microwave", "blend", "roast"]
 
-# Method to create a user with preference, recipes, bookmarks, reviews, and posts
-def create_user(email, password, first_name, last_name, username, preference_attrs)
-  user = User.create!(
-    email: email,
-    password: password,
-    first_name: first_name,
-    last_name: last_name,
-    username: username
-  )
-  user.create_preference(preference_attrs) # Associate preference directly with user
-end
+i = 1
 
-
-
-# Seed data
-users_data = [
-  {
-    email: 'user1@example.com',
-    password: 'password1',
-    first_name: 'John',
-    last_name: 'Doe',
-    username: 'john_doe',
-    preference_attrs: {
-      appliances: 'Stove, Oven',
-      ingredients: 'Fridge, Pantry',
-      diet: 'Vegetarian',
-      allergies: 'None',
-      level: 'Intermediate'
-    },
-    recipes_attrs: [
-      {
-        name: 'Vegetable Stir-Fry',
-        description: 'A simple and healthy stir-fry recipe.',
-        ingredients: 'Mixed vegetables, soy sauce, oil',
-        appliances: 'Stove',
-        instructions: '1. Heat oil in a pan...',
-        duration: '30 minutes',
-        difficulty: 'Easy',
-        diet: 'Vegetarian'
-      }
-    ]
-  },
-  {
-    email: 'user2@example.com',
-    password: 'password2',
-    first_name: 'Jane',
-    last_name: 'Smith',
-    username: 'jane_smith',
-    preference_attrs: {
-      appliances: 'Blender, Microwave',
-      ingredients: 'Fridge, Freezer',
-      diet: 'Vegan',
-      allergies: 'Peanuts',
-      level: 'Beginner'
-    }
+3.times do
+  user_attributes = {
+    email: "email#{i}@email.com",
+    password: "password#{i}",
+    first_name: "first_name#{i}",
+    last_name: "last_name#{i}",
+    username: "username#{i}",
   }
-]
 
-# Create users and associated records
-users_data.each do |user_data|
-  create_user(
-    user_data[:email],
-    user_data[:password],
-    user_data[:first_name],
-    user_data[:last_name],
-    user_data[:username],
-    user_data[:preference_attrs]
-  )
+  preference_attributes = {
+    appliances: appliances.sample(3),
+    ingredients: ingredients.sample(3),
+    diet: diet.sample(2),
+    allergies: allergies.sample(2),
+    level: level.sample
+  }
+
+  recipe_attributes = {
+    name: "recipe#{i}",
+    description: "description#{i}",
+    ingredients: ingredients.sample(3),
+    appliances: appliances.sample(3),
+    instructions: instructions.sample(4),
+    duration: rand(10..60),
+    difficulty: level.sample,
+    diet: diet.sample(2)
+  }
+
+  review_attributes = {
+    rating: rand(1..5),
+    comment: "comment#{i}"
+  }
+
+  user = User.new(user_attributes)
+  preference = Preference.new(preference_attributes)
+  preference.user = user
+  user.save!
+  preference.save!
+
+  recipe = Recipe.new(recipe_attributes)
+  recipe.save!
+  review = Review.new(review_attributes)
+  review.recipe = recipe
+  review.user = user
+  review.save!
+
+  i += 1
 end
-
-# create loop i
-    # create a preference (Preference.create)
-    # create a user (User.new)
-    # user.preference = preference
-    # user.save
-    # create a recipe
-    # create a bookmark for this recipe and user
-    # create a review for this recipe and user
-
-# Seed data
-# users_data = [
-#   {
-#     email: '
 
 puts 'Seeding completed successfully!'
