@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   devise_for :users
-  # Root defined to the home page
-  root to: "pages#home"
+  root to: "recipes#index"
 
   get 'search', to: 'pages#search'
   get 'profile', to: 'pages#profile'
