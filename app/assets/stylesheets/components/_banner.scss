@@ -1,9 +1,11 @@
 .banner {
-  object-fit: cover;
   padding: 60px;
   text-align: center;
   background-image: url('banner.jpg');
+  background-size: cover;
   color: white;
   font-size: 30px;
-  height: 600px;
+  min-height: 60vh;
+  position: relative;
+  text-shadow: 2px 2px 4px #000000;
 }
