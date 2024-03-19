@@ -13,9 +13,10 @@ def create_user(email, password, first_name, last_name, username, preference_att
     last_name: last_name,
     username: username
   )
-  user_preference = Preference.create!(preference_attrs)
-  user.preference = user_preference
+  user.create_preference(preference_attrs) # Associate preference directly with user
 end
+
+
 
 # Seed data
 users_data = [
@@ -27,7 +28,7 @@ users_data = [
     username: 'john_doe',
     preference_attrs: {
       appliances: 'Stove, Oven',
-      inventory: 'Fridge, Pantry',
+      ingredients: 'Fridge, Pantry',
       diet: 'Vegetarian',
       allergies: 'None',
       level: 'Intermediate'
@@ -53,7 +54,7 @@ users_data = [
     username: 'jane_smith',
     preference_attrs: {
       appliances: 'Blender, Microwave',
-      inventory: 'Fridge, Freezer',
+      ingredients: 'Fridge, Freezer',
       diet: 'Vegan',
       allergies: 'Peanuts',
       level: 'Beginner'
