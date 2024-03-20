@@ -7,8 +7,9 @@
 
 <div class="container">
 <% @recipes.each do |recipe| %>
-  <div class="row space m-3">
-    <div class="card">
+  <div class="row space m-3 p-3">
+  <%= link_to recipe_path(recipe) do %>
+    <div class="card recipe-card">
       <%= image_tag("burger.jpg", class: "card-img-top", alt: "Burger Image") %>
       <div class="card-body">
         <h3 class="card-title"><%= recipe.name %></h3>
@@ -24,4 +25,5 @@
     </div>
   </div>
   <% end %>
+<% end %>
 </div>
