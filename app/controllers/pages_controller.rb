@@ -12,4 +12,11 @@ class PagesController < ApplicationController
     @user = current_user
     @preference = @user.preference
   end
+
+  def cooking
+
+  end
+
+  def search_results
+  end
 end
