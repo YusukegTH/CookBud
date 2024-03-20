@@ -5,7 +5,7 @@ class PagesController < ApplicationController
   end
 
   def search
-    @preference = current_user.preference
+    @preference = current_user.preference if user_signed_in?
   end
 
   def profile
