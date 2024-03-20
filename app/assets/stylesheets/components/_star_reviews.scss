@@ -1,0 +1,21 @@
+.rating {
+  display: inline-flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+
+  .rating-input {
+    display: none;
+  }
+
+  .star {
+    cursor: pointer;
+    font-size: 32px;
+    color: #ccc;
+
+    &:hover,
+    &:hover ~ .star,
+    .rating-input:checked ~ & {
+      color: orange;
+    }
+  }
+}

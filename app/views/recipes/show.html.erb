@@ -7,35 +7,62 @@
         <span>Level: Easy</span>
         <span>⏱ 30 min</span>
       </div>
-      <div>
-        <span>★ 4.5</span>
-      </div>
+      <div><span>★ 4.5</span></div>
       <p class="my-4">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elitr, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-      <div class="my-4">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit...
+      </p>
+
+      <div class="my-2">
         <button class="btn btn-outline-secondary btn-block dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#recipeSteps" aria-expanded="false" aria-controls="recipeSteps">
           Steps
         </button>
         <div class="collapse" id="recipeSteps">
           <div class="card card-body">
-            <p>Step 1 of the recipe...</p>
-            <p>Step 2 of the recipe...</p>
+            <ol>
+              <li>Preheat your oven to 375°F (190°C).</li>
+              <li>Beat the eggs and milk together until smooth.</li>
+            </ol>
           </div>
         </div>
       </div>
-      <div class="my-4">
+
+      <div class="my-2">
         <button class="btn btn-outline-secondary btn-block dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#recipeComments" aria-expanded="false" aria-controls="recipeComments">
           Comments
         </button>
         <div class="collapse" id="recipeComments">
           <div class="card card-body">
-            <p>Comment 1...</p>
-            <p>Comment 2...</p>
+            <p><strong>User 1:</strong> Absolutely love this recipe! It's been a hit at family breakfasts.</p>
+            <p><strong>User 2:</strong> Tried this with a bit of cheese added, and it was delicious!</p>
           </div>
         </div>
       </div>
 
-      <button type="button" class="btn btn-primary btn-lg btn-block">Start cooking</button>
+      <div class="my-2">
+        <button class="btn btn-outline-secondary btn-block dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#leaveReview" aria-expanded="false" aria-controls="leaveReview">
+          Leave a Review
+        </button>
+        <div class="collapse" id="leaveReview">
+          <div class="card card-body">
+            <%= form_with(model: [@recipe, @recipe.reviews.build], local: true) do |form| %>
+              <div class="rating mb-3" data-controller="rating" data-action="mouseleave->rating#reset">
+                <% (1..5).reverse_each do |rating| %>
+                  <%= form.radio_button :rating, rating, id: "rating-#{rating}", class: "rating-input", hidden: true, "data-rating-target" => "star" %>
+                  <%= form.label "rating-#{rating}", "★", class: "star", title: "#{rating} stars", data: { action: "mouseenter->rating#highlight click->rating#setRating" } %>
+                <% end %>
+              </div>
+              <div class="mb-3">
+                <%= form.label :comment, 'Your comment' %>
+                <%= form.text_area :comment, rows: 3, class: 'form-control' %>
+              </div>
+              <%= form.submit 'Submit Review', class: 'btn btn-success' %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <div class="d-flex justify-content-center my-4">
+        <button type="button" class="btn btn-primary btn-lg">Start cooking</button>
+      </div>
     </div>
   </div>
 </div>
