@@ -12,4 +12,8 @@ class PagesController < ApplicationController
     @user = current_user
     @preference = @user.preference
   end
+
+  def cooking
+
+  end
 end
