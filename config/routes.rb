@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   get 'search', to: 'pages#search'
   get 'profile', to: 'pages#profile'
+  get 'search_results', to: 'pages#search_results'
 
   get 'cooking', to: 'pages#cooking'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

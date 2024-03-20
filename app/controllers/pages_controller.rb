@@ -16,4 +16,7 @@ class PagesController < ApplicationController
   def cooking
 
   end
+
+  def search_results
+  end
 end
