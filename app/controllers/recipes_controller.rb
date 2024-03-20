@@ -20,6 +20,7 @@ class RecipesController < ApplicationController
 
     description_match = recipe_string.match(/Description: (.+)/)
     @description = description_match ? description_match[1] : "Not specified"
+    @recipe = Recipe.new(name: @recipe_name, ingredients: @ingredients, appliances: User.last.preference.appliances, difficulty: @difficulty, duration: @duration, description: @description, diet: User.last.preference.diet)
   end
 
   def show
@@ -36,7 +37,7 @@ class RecipesController < ApplicationController
     client = OpenAI::Client.new
     chaptgpt_response = client.chat(parameters: {
       model: "gpt-3.5-turbo",
-      messages: [{ role: "user", content: "What´s a recipe that uses only ${current_user.preferences.ingredients} and ${current_user.preferences.appliances} to cook. Give me only the name, the ingredients, the duration, the difficulty of the recipe and a Description without any of your own answer like 'Here is a simple recipe'."}]
+      messages: [{ role: "user", content: "What´s a recipe that uses only ${User.last.preference.ingredients.join(', ')} and ${User.last.preference.appliances.join(', ')} to cook. Give me only the name, the ingredients, the duration, the difficulty defined as beginner, intermediate, advanced of the recipe and a Description without any of your own answer like 'Here is a simple recipe'."}]
     })
     @content = chaptgpt_response["choices"][0]["message"]["content"]
   end
