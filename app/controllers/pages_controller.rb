@@ -5,11 +5,15 @@ class PagesController < ApplicationController
   end
 
   def search
-    @preference = current_user.preference
+    @preference = current_user.preference if user_signed_in?
   end
 
   def profile
     @user = current_user
     @preference = @user.preference
+  end
+
+  def cooking
+
   end
 end

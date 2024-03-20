@@ -1,1 +1,8 @@
-<h1>Hello serach page</h1>
+<div class="container">
+  <h3>Recipe search</h3>
+  <% if user_signed_in? %>
+    <%= render partial: "pages/search", user: @user %>
+  <% else %>
+    <%= render partial: "pages/search" %>
+  <% end %>
+</div>
