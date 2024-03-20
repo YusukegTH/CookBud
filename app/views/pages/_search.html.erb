@@ -1,20 +1,22 @@
 <% if user_signed_in? %>
   <% user = current_user %>
-  <%= simple_form_for recipes_path do |f| %>
+  <%= simple_form_for :search, url: search_results_path, method: :get do |f| %>
     <%= f.input :appliances, input_html: { value: user.preference.appliances } %>
     <%= f.input :ingredients, input_html: { value: user.preference.ingredients } %>
     <%= f.input :diet, input_html: { value: user.preference.diet } %>
     <%= f.input :allergies, input_html: { value: user.preference.allergies } %>
     <%= f.input :level, input_html: { value: user.preference.level } %>
+    <%= f.input :duration %>
     <%= f.submit %>
   <% end %>
 <% else %>
-  <%= simple_form_for recipes_path do |f| %>
+  <%= simple_form_for :search, url: search_results_path, method: :get do |f| %>
     <%= f.input :appliances %>
     <%= f.input :ingredients %>
     <%= f.input :diet %>
     <%= f.input :allergies %>
     <%= f.input :level %>
+    <%= f.input :duration %>
     <%= f.submit %>
   <% end %>
 
