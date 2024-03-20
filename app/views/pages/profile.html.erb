@@ -1,40 +1,56 @@
-<div class="container">
-  <h2>My profile</h2>
-  <div class="container">
-    <p>Username: <%= @user.username %></p>
-    <p>First name: <%= @user.first_name %></p>
-    <p>Last name: <%= @user.last_name %></p>
-    <p>Email: <%= @user.email %></p>
-  </div>
+<div class="container mt-4">
+  <div class="text-center">
+    <h2>My Profile</h2>
+    <div class="card mt-3 mx-auto" style="max-width: 18rem;">
+      <div class="card-header">Profile Details</div>
+      <div class="card-body">
+        <div id="userDisplay">
+          <p class="card-text">Username: <%= @user.username %></p>
+          <p class="card-text">First name: <%= @user.first_name %></p>
+          <p class="card-text">Last name: <%= @user.last_name %></p>
+          <p class="card-text">Email: <%= @user.email %></p>
+          <button class="btn btn-info" onclick="toggleEdit('user')">Edit Profile</button>
+        </div>
+        <div id="userEdit" style="display: none;">
+          <%= form_for(@user, url: update_profile_path, html: { method: :patch }) do |f| %>
+            <%= f.label :username %>
+            <%= f.text_field :username, class: 'form-control' %>
+            <%= f.label :first_name %>
+            <%= f.text_field :first_name, class: 'form-control' %>
+            <%= f.label :last_name %>
+            <%= f.text_field :last_name, class: 'form-control' %>
+            <%= f.label :email %>
+            <%= f.email_field :email, class: 'form-control' %>
 
-  <h2>My preferences</h2>
-  <div class="container">
-    <h3>Cooking Level</h3>
-    <p> <%= @preference.level.capitalize %> </p>
-    <h3>Appliances</h3>
-    <ul>
-      <% @preference.appliances.each do |appliance| %>
-        <li> <%= appliance.capitalize %> </li>
-      <% end %>
-    </ul>
-    <h3>Ingredients</h3>
-    <ul>
-      <% @preference.ingredients.each do |ingredient| %>
-        <li> <%= ingredient.capitalize %> </li>
-      <% end %>
-    </ul>
-    <h3>Diet</h3>
-    <ul>
-      <% @preference.diet.each do |diet| %>
-        <li> <%= diet.capitalize %> </li>
-      <% end %>
-    </ul>
-    <h3>Allergies</h3>
-    <ul>
-      <% @preference.allergies.each do |allergy| %>
-        <li> <%= allergy.capitalize %> </li>
-      <% end %>
-    </ul>
-  </div>
+            <h3>Preferences</h3>
+            <%= f.fields_for :preference, @user.preference do |p| %>
+              <div class="form-group">
+                <%= p.label :level, 'Cooking Level' %>
+                <%= p.select :level, options_for_select(["Beginner", "Intermediate", "Advanced"], @user.preference.level), {}, {class: 'form-control'} %>
+              </div>
+              <!-- Repeat for other preferences like appliances, ingredients, etc. -->
+            <% end %>
 
+            <%= f.submit "Save Changes", class: "btn btn-success" %>
+            <button type="button" class="btn btn-secondary" onclick="toggleEdit('user')">Cancel</button>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<script>
+  function toggleEdit(section) {
+    var displaySection = document.getElementById(section + 'Display');
+    var editSection = document.getElementById(section + 'Edit');
+    if (displaySection.style.display === 'none') {
+      displaySection.style.display = 'block';
+      editSection.style.display = 'none';
+    } else {
+      displaySection.style.display = 'none';
+      editSection.style.display = 'block';
+    }
+  }
+</script>
+
