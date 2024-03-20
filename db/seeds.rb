@@ -6,7 +6,7 @@ Recipe.destroy_all
 Review.destroy_all
 
 appliances = ["stove", "microwave", "hot plate", "oven", "blender", "toaster"]
-ingredients = ["tomatoes", "potatoes", "salt", "pepper", "rice", "pasta"]
+ingredients = ["tomatoes", "potatoes", "salt", "pepper", "rice", "pasta", "chicken", "beef", "pork", "fish", "shrimp", "lettuce", "spinach", "carrots", "onions", "garlic", "mushrooms", "bell peppers", "broccoli", "zucchini", "avocado", "bananas", "apples", "oranges", "strawberries", "blueberries", "raspberries", "blackberries", "mangoes", "pineapples", "peaches", "watermelon", "cantaloupe", "honeydew", "kiwi", "grapes", "lemons", "limes", "coconut", "olive oil", "butter", "milk", "cheese", "yogurt", "eggs", "flour", "sugar", "honey", "maple syrup", "soy sauce", "vinegar", "mustard", "mayonnaise", "ketchup", "salsa", "hot sauce", "bbq sauce", "ranch", "italian dressing", "caesar dressing", "peanut butter", "jelly", "bread", "tortillas", "bagels", "muffins", "pancakes", "waffles", "cereal", "granola", "oatmeal", "popcorn", "chips", "crackers", "cookies", "brownies", "cake", "pie", "ice cream", "sorbet", "frozen yogurt", "chocolate", "candy", "nuts", "seeds", "dried fruit", "jerky", "protein bars", "protein powder", "vitamins", "supplements", "medication", "alcohol", "coffee", "tea", "soda", "juice", "water", "milk", "smoothie", "shake", "cocktail", "beer", "wine", "liquor", "champagne", "sparkling water", "sparkling juice", "sparkling wine", "sparkling cider", "sparkling tea", "sparkling coffee", "sparkling milk", "sparkling smoothie", "sparkling shake", "sparkling cocktail", "sparkling beer", "sparkling liquor", "sparkling champagne", "sparkling sparkling water", "sparkling sparkling juice", "sparkling sparkling wine"]
 diet = ["vegetarian", "vegan", "pescatarian", "keto", "paleo", "gluten-free"]
 allergies = ["peanuts", "dairy", "gluten", "shellfish", "soy", "eggs", "wheat"]
 level = ["beginner", "intermediate", "advanced"]
@@ -24,8 +24,8 @@ i = 1
   }
 
   preference_attributes = {
-    appliances: appliances.sample(3),
-    ingredients: ingredients.sample(3),
+    appliances: appliances.sample(4),
+    ingredients: ingredients.sample(5),
     diet: diet.sample(2),
     allergies: allergies.sample(2),
     level: level.sample
