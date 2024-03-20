@@ -12,7 +12,7 @@
           <button class="btn btn-info" onclick="toggleEdit('user')">Edit Profile</button>
         </div>
         <div id="userEdit" style="display: none;">
-          <%= form_for(@user, url: update_profile_path, html: { method: :patch }) do |f| %>
+          <%= form_for(@user, as: :user, url: user_registration_path, html: { method: :patch }) do |f| %>
             <%= f.label :username %>
             <%= f.text_field :username, class: 'form-control' %>
             <%= f.label :first_name %>
@@ -28,7 +28,6 @@
                 <%= p.label :level, 'Cooking Level' %>
                 <%= p.select :level, options_for_select(["Beginner", "Intermediate", "Advanced"], @user.preference.level), {}, {class: 'form-control'} %>
               </div>
-              <!-- Repeat for other preferences like appliances, ingredients, etc. -->
             <% end %>
 
             <%= f.submit "Save Changes", class: "btn btn-success" %>
@@ -53,4 +52,3 @@
     }
   }
 </script>
-
