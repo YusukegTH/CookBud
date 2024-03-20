@@ -1,25 +1,20 @@
-<div class="banner col-12">
-  <div class="justify-content-center">
-    <div class="col-lg-auto">
-      <h1 class="text-center">Cookbud 🚀</h1>
-      <%= link_to 'Search Recipes', search_path, class: 'btn btn-primary' %>
-    </div>
+<div class="banner">
+  <div class="overlay d-flex flex-column justify-content-center align-items-center">
+    <h1>Cookbud 🚀</h1>
+    <%= link_to 'Search Recipes', search_path, class: 'btn btn-primary' %>
   </div>
 </div>
 
-
-
-
 <div class="container">
 <% @recipes.each do |recipe| %>
-  <div class="row space">
+  <div class="row space m-3">
     <div class="card">
       <%= image_tag("burger.jpg", class: "card-img-top", alt: "Burger Image") %>
       <div class="card-body">
         <h3 class="card-title"><%= recipe.name %></h3>
-        <p class="card-text"><%= recipe.description[0, 30] %></p>
+        <p class="card-text"><%= recipe.description[0, 30] %>...</p>
       </div>
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-between p-3">
         <p class="list-group-item">Level: <%= recipe.difficulty %></p>
         <p class="list-group-item">⏲️ <%= recipe.duration %></p>
       </div>
