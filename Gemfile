@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
+# openai is a Ruby client for the OpenAI API 
+gem "ruby-openai"
+
 # cloudinary is a cloud service that offers a solution to a web application's entire image management pipeline [https://cloudinary.com]
 gem "cloudinary"
 
