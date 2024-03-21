@@ -2,7 +2,7 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
-# openai is a Ruby client for the OpenAI API 
+# openai is a Ruby client for the OpenAI API
 gem "ruby-openai"
 
 # cloudinary is a cloud service that offers a solution to a web application's entire image management pipeline [https://cloudinary.com]
@@ -61,7 +61,6 @@ gem "simple_form", github: "heartcombo/simple_form"
 gem "sassc-rails"
 
 group :development, :test do
-  gem "dotenv-rails"
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
 end

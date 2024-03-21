@@ -1,23 +1,25 @@
-<% if user_signed_in? %>
-  <% user = current_user %>
-  <%= simple_form_for :search, url: search_results_path, method: :get do |f| %>
-    <%= f.input :appliances, input_html: { value: user.preference.appliances } %>
-    <%= f.input :ingredients, input_html: { value: user.preference.ingredients } %>
-    <%= f.input :diet, input_html: { value: user.preference.diet } %>
-    <%= f.input :allergies, input_html: { value: user.preference.allergies } %>
-    <%= f.input :level, input_html: { value: user.preference.level } %>
-    <%= f.input :duration %>
-    <%= f.submit %>
+<%# Assuming you have user_signed_in? and current_user helpers available %>
+<div class="container mt-5">
+  <% if user_signed_in? %>
+    <% user = current_user %>
+    <%= simple_form_for :search, url: search_results_path, method: :get, html: { class: 'form-group' } do |f| %>
+      <%= f.input :appliances, input_html: { value: user.preference.appliances, class: 'form-control' } %>
+      <%= f.input :ingredients, input_html: { value: user.preference.ingredients, class: 'form-control' } %>
+      <%= f.input :diet, input_html: { value: user.preference.diet, class: 'form-control' } %>
+      <%= f.input :allergies, input_html: { value: user.preference.allergies, class: 'form-control' } %>
+      <%= f.input :level, input_html: { value: user.preference.level, class: 'form-control' } %>
+      <%= f.input :duration, input_html: { class: 'form-control' } %>
+      <%= f.button :submit, 'Search', class: 'btn btn-primary' %>
+    <% end %>
+  <% else %>
+    <%= simple_form_for :search, url: search_results_path, method: :get, html: { class: 'form-group' } do |f| %>
+      <%= f.input :appliances, as: :string, input_html: { class: 'form-control' } %>
+      <%= f.input :ingredients, as: :string, input_html: { class: 'form-control' } %>
+      <%= f.input :diet, as: :string, input_html: { class: 'form-control' } %>
+      <%= f.input :allergies, as: :string, input_html: { class: 'form-control' } %>
+      <%= f.input :level, as: :string, input_html: { class: 'form-control' } %>
+      <%= f.input :duration, as: :string, input_html: { class: 'form-control' } %>
+      <%= f.button :submit, 'Search', class: 'btn btn-primary' %>
+    <% end %>
   <% end %>
-<% else %>
-  <%= simple_form_for :search, url: search_results_path, method: :get do |f| %>
-    <%= f.input :appliances %>
-    <%= f.input :ingredients %>
-    <%= f.input :diet %>
-    <%= f.input :allergies %>
-    <%= f.input :level %>
-    <%= f.input :duration %>
-    <%= f.submit %>
-  <% end %>
-
-<% end %>
+</div>
