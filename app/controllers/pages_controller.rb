@@ -18,7 +18,6 @@ class PagesController < ApplicationController
   end
 
   def search_results
-    raise
     @preference = search_preference
     @filtered_recipes = Recipe.filter_with_preference(@preference)
   end
@@ -35,4 +34,8 @@ class PagesController < ApplicationController
     preference[:duration] = params[:search][:duration] if params[:search][:duration].present?
     preference
   end
+
+  # def recipe_params
+  #   params.require(:recipe).permit(:name, :description, :ingredients, :appliances, :instructions, :duration, :difficulty, :diet, :photo)
+  # end
 end
