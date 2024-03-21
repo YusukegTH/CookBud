@@ -61,7 +61,7 @@ class PagesController < ApplicationController
   def set_recipe_content
     client = OpenAI::Client.new
     test_user1 = User.last
-    prompt = "What´s a recipe that uses only #{test_user1.preference.ingredients.join(', ')} and #{test_user1.preference.appliances.join(', ')} to cook. Give me only the name with Name:, the ingredients used in  the recipe, the duration, the difficulty defined as Beginner, Intermediate, Advanced and a Description, followed by the steps you need to cook it without any of your own answer like 'Here is a simple recipe'."
+    prompt = "What´s a recipe that uses only #{test_user1.preference.ingredients.join(', ')} and #{test_user1.preference.appliances.join(', ')} to cook. Give me only the name with Name:, the ingredients used in the recipe, the duration, the difficulty defined as Beginner, Intermediate, Advanced and a Description, followed by the steps you need to cook it without any of your own answer like 'Here is a simple recipe'."
     chaptgpt_response = client.chat(parameters: {
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt}]
@@ -71,7 +71,7 @@ class PagesController < ApplicationController
 
   def imageAi
     client = OpenAI::Client.new
-    response = client.images.generate(parameters: { prompt: "delicous picture of #{@recipe.name}", size: "256x256" })
+    response = client.images.generate(parameters: { prompt: "delicous picture of #{@recipe.name}", size: "512x512" })
     response.dig("data", 0, "url")
   end
 
