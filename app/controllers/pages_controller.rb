@@ -18,21 +18,20 @@ class PagesController < ApplicationController
   end
 
   def search_results
-    @preference = search_preference
-    raise
-    @filtered_recipes = Recipe.filter_with_preference(@preference)
+    @search = search_preference
+    @filtered_recipes = Recipe.filter_with_preference(@search)
   end
 
   private
 
   def search_preference
     preference = {}
-    preference[:appliances] = params[:search][:appliances] if params[:search][:appliances].present?
-    preference[:ingredients] = params[:search][:ingredients] if params[:search][:ingredients].present?
-    preference[:diet] = params[:search][:diet] if params[:search][:diet].present?
-    preference[:allergies] = params[:search][:allergies] if params[:search][:allergies].present?
-    preference[:level] = params[:search][:level] if params[:search][:level].present?
-    preference[:duration] = params[:search][:duration] if params[:search][:duration].present?
+    preference[:appliances] = params[:appliances].chop.split(',')
+    preference[:ingredients] = params[:ingredients].chop.split(',')
+    preference[:diet] = params[:diet].chop.split(',')
+    preference[:allergies] = params[:allergies].chop.split(',')
+    preference[:level] = params[:level]
+    preference[:duration] = params[:duration]
     preference
   end
 
