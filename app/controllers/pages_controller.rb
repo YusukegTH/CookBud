@@ -24,8 +24,6 @@ class PagesController < ApplicationController
     # @filtered_recipes = Recipe.filter_with_preference(@preference)
   end
 
-
-
   private
 
   # def search_preference
