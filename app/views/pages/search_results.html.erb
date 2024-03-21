@@ -13,7 +13,7 @@
       <div class="col-md-12 mb-4">
         <div class="card recipe-card">
           <%= link_to recipe_path(@recipe) do %>
-            <%= image_tag("burger.jpg", class: "card-img-top", alt: "#{@recipe.name} Image") %>
+            <%= image_tag("#{@imageAi}", class: "card-img-top", alt: "#{@recipe.name} Image") %>
            <div class="card-body">
               <h3 class="card-title"><%= @recipe.name %></h3>
               <p class="card-subtitle mb-2 text-muted"><%= @recipe.description.truncate(70) %></p>

@@ -19,6 +19,7 @@ class PagesController < ApplicationController
 
   def search_results
     @searchAi = searchAi
+    @imageAi = imageAi
     # @preference = search_preference
     # @filtered_recipes = Recipe.filter_with_preference(@preference)
   end
@@ -66,6 +67,12 @@ class PagesController < ApplicationController
       messages: [{ role: "user", content: prompt}]
     })
     @content = chaptgpt_response["choices"][0]["message"]["content"]
+  end
+
+  def imageAi
+    client = OpenAI::Client.new
+    response = client.images.generate(parameters: { prompt: "delicous picture of #{@recipe.name}", size: "256x256" })
+    response.dig("data", 0, "url")
   end
 
   # def recipe_params

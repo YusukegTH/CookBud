@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   get 'profile', to: 'pages#profile'
   get 'search_results', to: 'pages#search_results'
   get 'search_results', to: 'pages#searchAi'
+  get 'search_results', to: 'pages#imageAi'
   get 'cooking', to: 'pages#cooking'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
