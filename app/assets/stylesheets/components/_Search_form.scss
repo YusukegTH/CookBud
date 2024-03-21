@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+.container {
+  .form-group {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    .form-control {
+      border-radius: 0.25rem;
+      margin-bottom: 1rem;
+    }
+
+    .btn-primary {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.1rem;
+      background-color: #f0ad4e;
+      border-color: #eea236;
+      &:hover {
+        background-color: #ec971f;
+        border-color: #d58512;
+      }
+    }
+  }
+}
