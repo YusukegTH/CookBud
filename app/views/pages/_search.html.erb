@@ -2,15 +2,123 @@
 <div class="container mt-5">
   <% if user_signed_in? %>
     <% user = current_user %>
-    <%= simple_form_for :search, url: search_results_path, method: :get, html: { class: 'form-group' } do |f| %>
-      <%= f.input :appliances, input_html: { value: user.preference.appliances, class: 'form-control' } %>
-      <%= f.input :ingredients, input_html: { value: user.preference.ingredients, class: 'form-control' } %>
-      <%= f.input :diet, input_html: { value: user.preference.diet, class: 'form-control' } %>
-      <%= f.input :allergies, input_html: { value: user.preference.allergies, class: 'form-control' } %>
-      <%= f.input :level, input_html: { value: user.preference.level, class: 'form-control' } %>
-      <%= f.input :duration, input_html: { class: 'form-control' } %>
-      <%= f.button :submit, 'Search', class: 'btn btn-primary' %>
-    <% end %>
+
+
+
+    <form action="/search_results" class="simple_form form-group" novalidate="novalidate" accept-charset="UTF-8" method="get">
+
+      <label class="form-label string required" for="search_appliances">Appliances <abbr title="required">*</abbr></label>
+      <div class="d-flex justify-content-start align-items-center">
+        <input class="form-control string required form-control mb-0 flex-grow-1" value=<%= user.preference.appliances.to_s %> type="text" name="search[appliances]" id="search_appliances">
+        <div class="mx-3"><i class="fa-solid fa-plus"></i></div>
+      </div>
+      <div class="container">
+        <% user.preference.appliances.each do |appliance| %>
+          <div class="d-flex justify-content-start align-items-center">
+            <p class="my-1 flex-grow-1"> <%= appliance.capitalize %> </p>
+            <div class="mx-3"><i class="fa-solid fa-circle-xmark"></i></div>
+          </div>
+        <% end %>
+      </div>
+
+      <label class="form-label string required mt-3" for="search_ingredients">Ingredients <abbr title="required">*</abbr></label>
+      <div class="d-flex justify-content-start align-items-center">
+        <input class="form-control string required form-control mb-0 flex-grow-1" value="" type="text" name="search[ingredients]" id="search_ingredients">
+        <div class="mx-3"><i class="fa-solid fa-plus"></i></div>
+      </div>
+      <div class="container">
+        <% user.preference.ingredients.each do |ingredient| %>
+          <div class="d-flex justify-content-start align-items-center">
+            <p class="my-1 flex-grow-1"> <%= ingredient.capitalize %> </p>
+            <div class="mx-3"><i class="fa-solid fa-circle-xmark"></i></div>
+          </div>
+        <% end %>
+      </div>
+
+      <label class="form-label string required mt-3" for="search_diet">Diet <abbr title="required">*</abbr></label>
+      <div class="d-flex justify-content-start align-items-center">
+        <input class="form-control string required form-control mb-0 flex-grow-1" value="" type="text" name="search[diet]" id="search_diet">
+        <div class="mx-3"><i class="fa-solid fa-plus"></i></div>
+      </div>
+      <div class="container">
+        <% user.preference.diet.each do |diet| %>
+          <div class="d-flex justify-content-start align-items-center">
+            <p class="my-1 flex-grow-1"> <%= diet.capitalize %> </p>
+            <div class="mx-3"><i class="fa-solid fa-circle-xmark"></i></div>
+          </div>
+        <% end %>
+      </div>
+
+      <label class="form-label string required mt-3" for="search_allergies">Allergies <abbr title="required">*</abbr></label>
+      <div class="d-flex justify-content-start align-items-center">
+        <input class="form-control string required form-control mb-0 flex-grow-1" value="" type="text" name="search[allergies]" id="search_allergies">
+        <div class="mx-3"><i class="fa-solid fa-plus"></i></div>
+      </div>
+      <div class="container">
+        <% user.preference.allergies.each do |allergie| %>
+          <div class="d-flex justify-content-start align-items-center">
+            <p class="my-1 flex-grow-1"> <%= allergie.capitalize %> </p>
+            <div class="mx-3"><i class="fa-solid fa-circle-xmark"></i></div>
+          </div>
+        <% end %>
+      </div>
+
+      <label class="form-label string required mt-3" for="search_level">Level<abbr title="required">*</abbr></label>
+        <select class="form-control string required form-control" name="search[level]" id="search[level]">
+          <% if user.preference.level == 'beginner' %>
+            <option value="beginner" selected='selected'>Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          <% elsif user.preference.level == 'intermediate' %>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate" selected='selected'>Intermediate</option>
+            <option value="Advanced">Advanced</option>
+          <% else %>
+            <option value="beginner">Beginner</option>
+            <option value="intermediate">Intermediate</option>
+            <option value="Advanced" selected='selected'>Advanced</option>
+          <% end %>
+        </select>
+
+
+
+        <input type="submit" name="commit" value="Search" class="btn btn btn-primary" data-disable-with="Search">
+
+    </form>
+
+  <div class="d-flex">
+    <label class="form-label string required" for="search_ingredients">Ingredients <abbr title="required">*</abbr></label>
+    <input class="form-control string required form-control" value="" type="text" name="search[ingredients]" id="search_ingredients">
+    <div class="container">
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <label class="form-label string required" for="search_diet">Diet <abbr title="required">*</abbr></label>
+    <input class="form-control string required form-control" value="" type="text" name="search[diet]" id="search_diet">
+    <div class="container">
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <label class="form-label string required" for="search_allergies">Allergies <abbr title="required">*</abbr></label>
+    <input class="form-control string required form-control" value="" type="text" name="search[allergies]" id="search_allergies">
+    <div class="container">
+    </div>
+  </div>
+
+  <div class="d-flex">
+    <label class="form-label string required" for="search_level">Level<abbr title="required">*</abbr></label>
+    <select class="form-control string required form-control" name="search[level]" id="cars">
+      <option value="volvo">Volvo</option>
+      <option value="saab">Saab</option>
+      <option value="mercedes">Mercedes</option>
+      <option value="audi">Audi</option>
+    </select>
+  </div>
+
+
+
   <% else %>
     <%= simple_form_for :search, url: search_results_path, method: :get, html: { class: 'form-group' } do |f| %>
       <%= f.input :appliances, as: :string, input_html: { class: 'form-control' } %>

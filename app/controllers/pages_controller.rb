@@ -19,6 +19,7 @@ class PagesController < ApplicationController
 
   def search_results
     @preference = search_preference
+    raise
     @filtered_recipes = Recipe.filter_with_preference(@preference)
   end
 
