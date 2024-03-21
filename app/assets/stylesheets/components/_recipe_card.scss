@@ -1,3 +1,48 @@
-.space a {
-  text-decoration: none;
+.recipe-card {
+  border-radius: 15px !important; // Ensures the card itself has rounded corners
+  overflow: hidden; // Prevents child elements from overflowing the card's rounded corners
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  .card-img-top {
+    border-top-left-radius: 15px !important;
+    border-top-right-radius: 15px !important; // Rounds the top corners of the image to match the card
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+
+  .card-body,
+  .card-footer {
+    border-radius: 0 !important; // Removes any conflicting border-radius styles on child elements
+  }
+
+  .card-footer {
+    border-top: 1px solid #ffe0b3; // Adds a subtle separation between content and footer
+  }
+}
+
+// Additional styles for hover effects, color adjustments, etc., can follow the same pattern
+
+.card-title {
+  color: #e67300; /* Warm color for titles */
+}
+
+.card-text,
+.text-muted {
+  color: #666; /* Slightly darker text for readability */
+}
+
+.btn-primary {
+  background-color: #f0ad4e; /* Custom button color */
+  border-color: #eea236; /* Button border color */
+  transition: background-color 0.3s ease; /* Smooth background color transition */
+}
+
+.btn-primary:hover {
+  background-color: #ec971f; /* Darker shade on hover */
+  border-color: #d58512;
 }
