@@ -16,23 +16,20 @@
 <p><%= @description %></p>
 </div>
 
-<div class="container mt-5">
+<div class="container mt-3">
   <div class="row">
     <% @recipes.each do |recipe| %>
-      <div class="col-md-4 mb-4">
-        <div class="card h-100">
+      <div class="col-md-12 mb-4">
+        <div class="card recipe-card">
           <%= link_to recipe_path(recipe) do %>
             <%= image_tag("burger.jpg", class: "card-img-top", alt: "#{recipe.name} Image") %>
-            <div class="card-body d-flex flex-column">
+           <div class="card-body">
               <h3 class="card-title"><%= recipe.name %></h3>
-              <p class="card-text"><%= recipe.description.truncate(70) %></p>
-              <div class="mt-auto">
-                <%= link_to 'View Recipe', recipe_path(recipe), class: 'btn btn-primary' %>
+              <p class="card-subtitle mb-2 text-muted"><%= recipe.description.truncate(70) %></p>
+              <div class="card-footer d-flex justify-content-between">
+                <small class="text-muted"><%= recipe.difficulty.capitalize %></small>
+                <small class="text-muted">⏲️ <%= recipe.duration %></small>
               </div>
-            </div>
-            <div class="card-footer">
-              <small class="text-muted">Level: <%= recipe.difficulty %></small>
-              <small class="text-muted float-right">⏲️ <%= recipe.duration %></small>
             </div>
           <% end %>
         </div>

@@ -1,48 +1,86 @@
 .recipe-card {
-  border-radius: 15px !important; // Ensures the card itself has rounded corners
-  overflow: hidden; // Prevents child elements from overflowing the card's rounded corners
-
-  &:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
-  }
-
-  .card-img-top {
-    border-top-left-radius: 15px !important;
-    border-top-right-radius: 15px !important; // Rounds the top corners of the image to match the card
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-  }
-
-  .card-body,
-  .card-footer {
-    border-radius: 0 !important; // Removes any conflicting border-radius styles on child elements
-  }
-
-  .card-footer {
-    border-top: 1px solid #ffe0b3; // Adds a subtle separation between content and footer
-  }
+  border: none;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  font-family: "Open Sans", sans-serif;
+  transition: box-shadow 0.3s ease;
+  max-width: 90%;
+  margin: 0 auto;
 }
 
-// Additional styles for hover effects, color adjustments, etc., can follow the same pattern
+.recipe-card a {
+  text-decoration: none;
+}
+
+.recipe-card:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card-img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.card-body {
+  background: #ffffff; /* White background for the text area */
+}
 
 .card-title {
-  color: #e67300; /* Warm color for titles */
+  font-size: 1.2rem;
+  color: #000; /* Black color for the title */
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  padding: 10px 0; /* Remove underline */
 }
 
-.card-text,
+.card-subtitle {
+  font-size: 0.8rem;
+  color: #808080; /* Grey color for the text */
+  margin-bottom: 0.5rem;
+  text-decoration: none;
+  padding: 10px 0; /* Remove underline */
+}
+
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  background: #ffffff; /* White background for the meta area */
+  align-items: center;
+  padding: 10px;
+}
+
 .text-muted {
-  color: #666; /* Slightly darker text for readability */
+  font-size: 0.9rem;
+  color: #555;
 }
 
-.btn-primary {
-  background-color: #f0ad4e; /* Custom button color */
-  border-color: #eea236; /* Button border color */
-  transition: background-color 0.3s ease; /* Smooth background color transition */
+.row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 100%;
 }
 
-.btn-primary:hover {
-  background-color: #ec971f; /* Darker shade on hover */
-  border-color: #d58512;
+.title-and-difficulty {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.card-title,
+.difficulty {
+  margin-bottom: 0;
+}
+
+.difficulty {
+  font-size: 1rem;
+  color: #000;
+}
+
+.col-md-12 {
+  display: flex;
+  justify-content: center;
 }
