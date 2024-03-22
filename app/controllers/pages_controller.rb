@@ -26,17 +26,6 @@ class PagesController < ApplicationController
 
   private
 
-  # def search_preference
-  #   preference = {}
-  #   preference[:appliances] = params[:search][:appliances] if params[:search][:appliances].present?
-  #   preference[:ingredients] = params[:search][:ingredients] if params[:search][:ingredients].present?
-  #   preference[:diet] = params[:search][:diet] if params[:search][:diet].present?
-  #   preference[:allergies] = params[:search][:allergies] if params[:search][:allergies].present?
-  #   preference[:level] = params[:search][:level] if params[:search][:level].present?
-  #   preference[:duration] = params[:search][:duration] if params[:search][:duration].present?
-  #   preference
-  # end
-
   def searchAi
     @content = set_recipe_content
     recipe_string = @content
@@ -83,8 +72,4 @@ class PagesController < ApplicationController
     preference[:duration] = params[:duration]
     preference
   end
-
-  # def recipe_params
-  #   params.require(:recipe).permit(:name, :description, :ingredients, :appliances, :instructions, :duration, :difficulty, :diet, :photo)
-  # end
 end
