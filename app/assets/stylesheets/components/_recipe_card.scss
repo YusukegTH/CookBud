@@ -4,13 +4,6 @@
   max-width: 1200px;
 }
 
-.row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-
 .recipe-card {
   border: none;
   border-radius: 10px;
@@ -21,6 +14,7 @@
   width: 100%;
   max-width: 300px;
   margin: 0 auto;
+  background-color: white;
 }
 
 .recipe-card a {
@@ -28,18 +22,17 @@
 }
 
 .card-img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  width: 100%; /* Ensures the image fills the container */
+  height: auto; /* Maintains aspect ratio */
+  object-fit: cover; /* Covers the area, useful if the image isn't square */
 }
-
 .card-body {
   background: #ffffff;
   padding: 20px;
 }
 
 .card-title,
-.card-subtitle{
+.card-subtitle {
   margin-bottom: 0.5rem;
   padding: 10px 0;
   font-size: 1rem;
@@ -64,6 +57,21 @@
   padding: 10px;
 }
 
-.color1 {
-  color:#808080;
+.style1 {
+  color: #808080;
+}
+
+.style2 {
+  color: #808080;
+}
+
+.image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  max-width: 100%; /* Controls the image size */
+  height: 200px; /* Matches width for consistency */
+  margin: auto;
+  overflow: hidden; /* Ensures nothing extends beyond the border-radius */
 }
