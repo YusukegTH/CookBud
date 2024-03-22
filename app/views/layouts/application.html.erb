@@ -12,9 +12,12 @@
 
   <body>
 
-    <%= render "shared/navbar" %>
-    <%= render "shared/flashes" %>
+    <p class="notice p-0 m-0"><%= notice %></p>
+    <p class="alert p-0 m-0"><%= alert %></p>
 
+    <%= render partial: "layouts/navbar" %>
+  <div class="navbar-margin">
     <%= yield %>
+  </div>
   </body>
 </html>
