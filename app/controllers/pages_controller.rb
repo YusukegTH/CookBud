@@ -64,10 +64,10 @@ class PagesController < ApplicationController
 
   def search_preference
     preference = {}
-    preference[:appliances] = params[:appliances].chop.split(',')
-    preference[:ingredients] = params[:ingredients].chop.split(',')
-    preference[:diet] = params[:diet].chop.split(',')
-    preference[:allergies] = params[:allergies].chop.split(',')
+    params[:appliances].size > 1 ? preference[:appliances] = params[:appliances].chop.split(',') : preference[:appliances] = ""
+    params[:ingredients].size > 1 ? preference[:ingredients] = params[:ingredients].chop.split(',') : preference[:ingredients] = ""
+    params[:diet].size > 1 ? preference[:diet] = params[:diet].chop.split(',') : preference[:diet] = ""
+    params[:allergies].size > 1 ? preference[:allergies] = params[:allergies].chop.split(',') : preference[:allergies] = ""
     preference[:level] = params[:level]
     preference[:duration] = params[:duration]
     preference
