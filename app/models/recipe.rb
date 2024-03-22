@@ -1,6 +1,6 @@
 class Recipe < ApplicationRecord
   # Associations
-  has_one_attached :image
+  has_one_attached :photo
   has_many :reviews, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
 

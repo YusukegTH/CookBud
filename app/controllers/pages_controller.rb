@@ -1,5 +1,6 @@
 class PagesController < ApplicationController
   skip_before_action :authenticate_user!, only: [ :home, :search, :search_results ]
+  require 'open-uri'
 
   def home
   end
@@ -26,6 +27,15 @@ class PagesController < ApplicationController
 
   private
 
+  # makes a prompt to OpenAI API to generate a photo
+  def imageAi
+    client = OpenAI::Client.new
+    response = client.images.generate(parameters: { prompt: "delicous picture of #{@recipe.name}", size: "512x512" })
+    @url = response.dig("data", 0, "url")
+    return @url
+  end
+
+  # makes a prompt to OpenAI API to generate a recipe and call the imageAi method to attach a photo to the recipe
   def searchAi
     @content = set_recipe_content
     recipe_string = @content
@@ -42,6 +52,8 @@ class PagesController < ApplicationController
     instruction_match = recipe_string.match(/Steps:.*/m)
     @instructions = instruction_match ? instruction_match : "Not specified"
     @recipe = Recipe.new(name: @recipe_name, ingredients: @ingredients, appliances: User.last.preference.appliances.join(', '), instructions: @instructions, difficulty: @difficulty, duration: @duration, description: @description, diet: User.last.preference.diet.join(', '))
+    file = URI.open(imageAi)
+    @recipe.photo.attach(io: file, filename: "#{@recipe_name}.jpg", content_type: "image/png")
     @recipe.save!
   end
 
@@ -56,11 +68,6 @@ class PagesController < ApplicationController
     @content = chaptgpt_response["choices"][0]["message"]["content"]
   end
 
-  def imageAi
-    client = OpenAI::Client.new
-    response = client.images.generate(parameters: { prompt: "delicous picture of #{@recipe.name}", size: "512x512" })
-    response.dig("data", 0, "url")
-  end
 
   def search_preference
     preference = {}
