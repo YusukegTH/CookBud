@@ -1,0 +1,23 @@
+<div class="fixed-top">
+  <div class="navigation-bar">
+    <div class="navigation-bar-button">
+      <%= link_to search_path, :class => "navigation-bar-link" do %>
+        <i class="fa-solid fa-magnifying-glass"></i>
+      <% end %>
+    </div>
+
+    <div class="navigation-bar-button">
+      <%= link_to root_path, :class => "navigation-bar-link" do %>
+        <%# <div class="navigation-bar-logo"></div>   %>
+         <%= image_tag("transparent_cookbud.png", alt: "CookBud logo", class: "navigation-bar-logo") %>
+      <% end %>
+    </div>
+
+    <div class="navigation-bar-button">
+      <%= link_to profile_path, :class => "navigation-bar-link" do %>
+        <i class="fa-solid fa-user"></i>
+      <% end %>
+    </div>
+
+  </div>
+</div>
