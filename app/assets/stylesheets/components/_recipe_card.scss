@@ -1,19 +1,16 @@
-/* Container to center and limit the width of the entire block */
 .container {
-  margin: 3rem auto; /* Top and bottom margin with auto horizontal margins for centering */
-  padding: 0 15px; /* Padding to ensure content does not touch the edges */
-  max-width: 1200px; /* Maximum width of the container, adjust as necessary */
+  margin: 3rem auto;
+  padding: 0 15px;
+  max-width: 1200px;
 }
 
-/* Row to handle the layout of cards */
 .row {
   display: flex;
-  justify-content: center; /* Centers the cards horizontally */
-  flex-wrap: wrap; /* Allows cards to wrap to new lines */
-  gap: 20px; /* Space between cards, adjust as necessary */
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
 }
 
-/* Card styling */
 .recipe-card {
   border: none;
   border-radius: 10px;
@@ -21,17 +18,13 @@
   overflow: hidden;
   font-family: "Open Sans", sans-serif;
   transition: box-shadow 0.3s ease;
-  width: 100%; /* Ensures card width is responsive */
-  max-width: 300px; /* Maximum width of the card, adjust based on your design */
-  margin: 0 auto; /* Centers the card within its flex container */
+  width: 100%;
+  max-width: 300px;
+  margin: 0 auto;
 }
 
 .recipe-card a {
   text-decoration: none;
-}
-
-.recipe-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
 .card-img {
@@ -42,10 +35,11 @@
 
 .card-body {
   background: #ffffff;
-  padding: 20px; /* Added padding for internal spacing */
+  padding: 20px;
 }
 
-.card-title, .card-subtitle, .text-muted {
+.card-title,
+.card-subtitle{
   margin-bottom: 0.5rem;
   padding: 10px 0;
   font-size: 1rem;
@@ -56,7 +50,8 @@
   color: #000;
 }
 
-.card-subtitle, .text-muted {
+.card-subtitle,
+.text-muted {
   color: #808080;
   font-size: 0.9rem;
 }
@@ -67,4 +62,8 @@
   background: #ffffff;
   align-items: center;
   padding: 10px;
+}
+
+.color1 {
+  color:#808080;
 }
