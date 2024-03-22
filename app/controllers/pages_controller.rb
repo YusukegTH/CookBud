@@ -15,14 +15,15 @@ class PagesController < ApplicationController
   end
 
   def cooking
+    @recipe = Recipe.find(params[:recipe_id])
 
   end
 
   def search_results
-    # @searchAi = searchAi
-    # @imageAi = imageAi
     @search = search_preference
     @filtered_recipes = filter_with_preference(@search)
+    # @searchAi = searchAi
+    # @imageAi = imageAi
   end
 
   private
@@ -91,7 +92,6 @@ class PagesController < ApplicationController
     else
       search_results = Recipe.all
     end
-
     search_results = search_results.where("duration <= ?", search[:duration].to_i) if search[:duration] != ""
 
     search_results.each do |recipe|
