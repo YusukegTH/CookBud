@@ -22,8 +22,9 @@ class PagesController < ApplicationController
   def search_results
     @search = search_preference
     @filtered_recipes = filter_with_preference(@search)
-    # @searchAi = searchAi
-    # @imageAi = imageAi
+    @search_ai = searchAi
+    @image_ai = imageAi
+    @filtered_recipes.append(@recipe)
   end
 
   private
