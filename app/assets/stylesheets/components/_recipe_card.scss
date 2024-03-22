@@ -14,25 +14,23 @@
   width: 100%;
   max-width: 300px;
   margin: 0 auto;
-  background-color: white;
+  background-color:$white;
 }
 
 .recipe-card a {
   text-decoration: none;
+  color: $black;
 }
 
 .card-img {
   width: 100%; /* Ensures the image fills the container */
   height: auto; /* Maintains aspect ratio */
-  object-fit: cover; /* Covers the area, useful if the image isn't square */
-
+  object-fit: cover;
 }
 .card-body {
-  background: #ffffff;
-  padding: 20px;
+  background: $white;
 }
 
-.card-title,
 .card-subtitle {
   margin-bottom: 0.5rem;
   padding: 10px 0;
@@ -41,38 +39,30 @@
 }
 
 .card-title {
-  color: #000;
+  color: $black;
+  font-size: 1em;
+  margin: 0;
+  font-weight: bold;
 }
 
 .card-subtitle,
 .text-muted {
-  color: #808080;
   font-size: 0.9rem;
 }
 
 .card-footer {
-  display: flex;
-  justify-content: space-between;
-  background: #ffffff;
-  align-items: center;
-  padding: 10px;
+  background: $white;
+  padding: 0;
+  padding-top: 3px;
+  font-weight: bold;
 }
 
-.style1 {
-  color: #808080;
-}
 
-.style2 {
-  color: #808080;
-}
 
 .image-container {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  padding: 20px;
-  max-width: 100%; /* Controls the image size */
+  padding: 16px 16px 0px 16px;
+  width: 100%; /* Controls the image size */
   height: 200px; /* Matches width for consistency */
-  margin: auto;
-  overflow: hidden; /* Ensures nothing extends beyond the border-radius */
+  overflow: hidden;
 }

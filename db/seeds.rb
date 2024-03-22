@@ -136,6 +136,11 @@ test_recipe1_attributes = {
 }
 
 test_recipe1 = Recipe.new(test_recipe1_attributes)
+client = OpenAI::Client.new
+    response = client.images.generate(parameters: { prompt: "delicous picture of #{test_recipe1.name}", size: "512x512" })
+    url = response.dig("data", 0, "url")
+file = URI.open(url)
+test_recipe1.photo.attach(io: file, filename: "#{test_recipe1.name}.jpg", content_type: "image/png")
 test_recipe1.save!
 
 # Recipe 2
@@ -159,6 +164,11 @@ test_recipe2_attributes = {
 }
 
 test_recipe2 = Recipe.new(test_recipe2_attributes)
+client = OpenAI::Client.new
+    response = client.images.generate(parameters: { prompt: "delicous picture of #{test_recipe2.name}", size: "512x512" })
+    url2 = response.dig("data", 0, "url")
+file2 = URI.open(url2)
+test_recipe2.photo.attach(io: file2, filename: "#{test_recipe2.name}.jpg", content_type: "image/png")
 test_recipe2.save!
 
 # Recipe 3
@@ -181,6 +191,11 @@ test_recipe3_attributes = {
 }
 
 test_recipe3 = Recipe.new(test_recipe3_attributes)
+client = OpenAI::Client.new
+    response = client.images.generate(parameters: { prompt: "delicous picture of #{test_recipe3.name}", size: "512x512" })
+    url3 = response.dig("data", 0, "url")
+file3 = URI.open(url3)
+test_recipe3.photo.attach(io: file3, filename: "#{test_recipe3.name}.jpg", content_type: "image/png")
 test_recipe3.save!
 
 
