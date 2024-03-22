@@ -18,10 +18,10 @@ class PagesController < ApplicationController
   end
 
   def search_results
-    @searchAi = searchAi
-    @imageAi = imageAi
+    # @searchAi = searchAi
+    # @imageAi = imageAi
     @search = search_preference
-    @filtered_recipes = Recipe.filter_with_preference(@search)
+    @filtered_recipes = filter_with_preference(@search)
   end
 
   private
@@ -71,5 +71,35 @@ class PagesController < ApplicationController
     preference[:level] = params[:level]
     preference[:duration] = params[:duration]
     preference
+  end
+
+  # Search results algorithm
+
+  def filter_with_preference(search)
+    filtered_results = []
+    if search[:level] == "beginner"
+      search_results = Recipe.where(difficulty: "beginner")
+    elsif search[:level] == "intermediate"
+      search_results = Recipe.where(difficulty: ["beginner", "intermediate"])
+    else
+      search_results = Recipe.all
+    end
+
+    search_results = search_results.where("duration <= ?", search[:duration].to_i) if search[:duration] != ""
+
+    search_results.each do |recipe|
+      if contained_in?(recipe.appliances, search[:appliances]) && contained_in?(recipe.ingredients, search[:ingredients]) && contained_in?(recipe.diet, search[:diet])
+        filtered_results << recipe
+      end
+    end
+    filtered_results
+  end
+
+  def contained_in?(recipe, search)
+    JSON.parse(recipe).all? { |item| search.include?(item)}
+  end
+
+  def check_allergies?(preference, recipe)
+    !contains_all?(preference[:allergies], JSON.parse(recipe.ingredients))
   end
 end
