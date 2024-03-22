@@ -1,3 +1,19 @@
+/* Container to center and limit the width of the entire block */
+.container {
+  margin: 3rem auto; /* Top and bottom margin with auto horizontal margins for centering */
+  padding: 0 15px; /* Padding to ensure content does not touch the edges */
+  max-width: 1200px; /* Maximum width of the container, adjust as necessary */
+}
+
+/* Row to handle the layout of cards */
+.row {
+  display: flex;
+  justify-content: center; /* Centers the cards horizontally */
+  flex-wrap: wrap; /* Allows cards to wrap to new lines */
+  gap: 20px; /* Space between cards, adjust as necessary */
+}
+
+/* Card styling */
 .recipe-card {
   border: none;
   border-radius: 10px;
@@ -5,8 +21,9 @@
   overflow: hidden;
   font-family: "Open Sans", sans-serif;
   transition: box-shadow 0.3s ease;
-  max-width: 90%;
-  margin: 0 auto;
+  width: 100%; /* Ensures card width is responsive */
+  max-width: 300px; /* Maximum width of the card, adjust based on your design */
+  margin: 0 auto; /* Centers the card within its flex container */
 }
 
 .recipe-card a {
@@ -24,63 +41,30 @@
 }
 
 .card-body {
-  background: #ffffff; /* White background for the text area */
+  background: #ffffff;
+  padding: 20px; /* Added padding for internal spacing */
+}
+
+.card-title, .card-subtitle, .text-muted {
+  margin-bottom: 0.5rem;
+  padding: 10px 0;
+  font-size: 1rem;
+  text-decoration: none;
 }
 
 .card-title {
-  font-size: 1.2rem;
-  color: #000; /* Black color for the title */
-  margin-bottom: 0.5rem;
-  text-decoration: none;
-  padding: 10px 0; /* Remove underline */
+  color: #000;
 }
 
-.card-subtitle {
-  font-size: 0.8rem;
-  color: #808080; /* Grey color for the text */
-  margin-bottom: 0.5rem;
-  text-decoration: none;
-  padding: 10px 0; /* Remove underline */
+.card-subtitle, .text-muted {
+  color: #808080;
+  font-size: 0.9rem;
 }
 
 .card-footer {
   display: flex;
   justify-content: space-between;
-  background: #ffffff; /* White background for the meta area */
+  background: #ffffff;
   align-items: center;
   padding: 10px;
-}
-
-.text-muted {
-  font-size: 0.9rem;
-  color: #555;
-}
-
-.row {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 100%;
-}
-
-.title-and-difficulty {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}
-
-.card-title,
-.difficulty {
-  margin-bottom: 0;
-}
-
-.difficulty {
-  font-size: 1rem;
-  color: #000;
-}
-
-.col-md-12 {
-  display: flex;
-  justify-content: center;
 }

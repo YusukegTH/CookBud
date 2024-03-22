@@ -20,8 +20,8 @@ class PagesController < ApplicationController
   def search_results
     @searchAi = searchAi
     @imageAi = imageAi
-    # @preference = search_preference
-    # @filtered_recipes = Recipe.filter_with_preference(@preference)
+    @search = search_preference
+    @filtered_recipes = Recipe.filter_with_preference(@search)
   end
 
   private
@@ -71,6 +71,17 @@ class PagesController < ApplicationController
     client = OpenAI::Client.new
     response = client.images.generate(parameters: { prompt: "delicous picture of #{@recipe.name}", size: "512x512" })
     response.dig("data", 0, "url")
+  end
+
+  def search_preference
+    preference = {}
+    preference[:appliances] = params[:appliances].chop.split(',')
+    preference[:ingredients] = params[:ingredients].chop.split(',')
+    preference[:diet] = params[:diet].chop.split(',')
+    preference[:allergies] = params[:allergies].chop.split(',')
+    preference[:level] = params[:level]
+    preference[:duration] = params[:duration]
+    preference
   end
 
   # def recipe_params
