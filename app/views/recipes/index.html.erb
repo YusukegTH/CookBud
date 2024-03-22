@@ -12,12 +12,12 @@
         <div class="card recipe-card">
           <%= link_to recipe_path(recipe) do %>
             <div class="image-container">
-              <%= image_tag("burger.jpg", class: "card-img-top", alt: "#{recipe.name} Image") %>
+              <%= image_tag(recipe.photo, class: "card-img-top", alt: "#{recipe.name} Image") %>
             </div>
-            <div class="card-body">
+            <div class="card-body p-3 pt-1">
               <h3 class="card-title"><%= recipe.name %></h3>
-              <p class="card-subtitle"><%= recipe.description.truncate(70) %></p>
-              <div class="card-footer justify-content-between">
+              <p class="card-subtitle"><%= recipe.description[0,30] %>...</p>
+              <div class="card-footer d-flex justify-content-between">
                 <small class="style1"><%= recipe.difficulty.capitalize %></small>
                 <small class="style2">⏲️ <%= recipe.duration %></small>
               </div>
