@@ -9,7 +9,12 @@
           <p class="card-text">First name: <%= @user.first_name %></p>
           <p class="card-text">Last name: <%= @user.last_name %></p>
           <p class="card-text">Email: <%= @user.email %></p>
-          <button class="btn btn-info" onclick="toggleEdit('user')">Edit Profile</button>
+          <div class="d-flex justify-content-between">
+            <button class="btn btn-info" onclick="toggleEdit('user')">Edit Profile</button>
+            <%= link_to destroy_user_session_path, :class => "navigation-bar-link", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
+              <button class="btn btn-danger">Logout</button>
+            <% end %>
+          </div>
         </div>
         <div id="userEdit" style="display: none;">
           <%= form_for(@user, as: :user, url: user_registration_path, html: { method: :patch }) do |f| %>
@@ -39,8 +44,6 @@
   </div>
 </div>
 
-
-<%= current_user.preference.appliances.class %>
 
 <script>
   function toggleEdit(section) {

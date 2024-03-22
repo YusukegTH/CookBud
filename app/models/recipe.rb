@@ -15,7 +15,6 @@ class Recipe < ApplicationRecord
   validates :diet, presence: true
 
   def self.filter_with_preference(preference)
-
     filtered_results = []
     if preference[:level] == "beginner"
       search_results = Recipe.where(difficulty: "beginner")
@@ -32,7 +31,6 @@ class Recipe < ApplicationRecord
         filtered_results << recipe
       end
     end
-
     filtered_results
   end
 
@@ -44,15 +42,15 @@ class Recipe < ApplicationRecord
   end
 
   def check_appliances?
-    contained_in_list?(preference[:appliances], recipe.appliances)
+    contained_in_list?(recipe.appliances, preference[:appliances])
   end
 
   def check_ingredients?
-    contained_in_list?(preference[:ingredients], recipe.ingredients)
+    contained_in_list?(recipe.ingredients, preference[:ingredients])
   end
 
   def check_diet?
-    contained_in_list?(preference[:diet], recipe.diet)
+    contained_in_list?(recipe.diet, preference[:diet])
   end
 
   def check_allergies?
