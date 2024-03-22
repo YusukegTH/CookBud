@@ -20,25 +20,11 @@ class PagesController < ApplicationController
   def search_results
     @searchAi = searchAi
     @imageAi = imageAi
-    # @preference = search_preference
-    # @filtered_recipes = Recipe.filter_with_preference(@preference)
     @search = search_preference
     @filtered_recipes = Recipe.filter_with_preference(@search)
   end
 
   private
-
-
-  # def search_preference
-  #   preference = {}
-  #   preference[:appliances] = params[:search][:appliances] if params[:search][:appliances].present?
-  #   preference[:ingredients] = params[:search][:ingredients] if params[:search][:ingredients].present?
-  #   preference[:diet] = params[:search][:diet] if params[:search][:diet].present?
-  #   preference[:allergies] = params[:search][:allergies] if params[:search][:allergies].present?
-  #   preference[:level] = params[:search][:level] if params[:search][:level].present?
-  #   preference[:duration] = params[:search][:duration] if params[:search][:duration].present?
-  #   preference
-  # end
 
   def searchAi
     @content = set_recipe_content
@@ -74,8 +60,9 @@ class PagesController < ApplicationController
     client = OpenAI::Client.new
     response = client.images.generate(parameters: { prompt: "delicous picture of #{@recipe.name}", size: "512x512" })
     response.dig("data", 0, "url")
+  end
 
- 
+  def search_preference
     preference = {}
     preference[:appliances] = params[:appliances].chop.split(',')
     preference[:ingredients] = params[:ingredients].chop.split(',')
@@ -84,10 +71,5 @@ class PagesController < ApplicationController
     preference[:level] = params[:level]
     preference[:duration] = params[:duration]
     preference
-
   end
-
-  # def recipe_params
-  #   params.require(:recipe).permit(:name, :description, :ingredients, :appliances, :instructions, :duration, :difficulty, :diet, :photo)
-  # end
 end
