@@ -99,10 +99,10 @@ test_user2_atttributes = {
 
 test_user2_preference_attributes = {
   appliances: ["oven", "blender", "toaster", "microwave", "hot plate", "frying pan", "knife", "cutting board", "pan", "pot"],
-  ingredients: ["red wine", "salt", "pepper", "rice", "spaghetti", "tomatoes", "onions", "garlic", "olive oil", "butter", "sour cream", "milk", "cheese", "eggs", "flour", "sugar", "honey", "soy sauce", "vinegar", "mustard", "mayonnaise", "ketchup", "ground beef", "chicken breasts", "shrimp", "eggplant", "zucchini", "carrots", "bacon"],
+  ingredients: ["peanut butter", "sugar", "eggs", "flour", "baking soda", "salt", "red wine", "salt", "pepper", "rice", "spaghetti", "tomatoes", "onions", "garlic", "olive oil", "butter", "sour cream", "milk", "cheese", "eggs", "flour", "sugar", "honey", "soy sauce", "vinegar", "mustard", "mayonnaise", "ketchup", "ground beef", "chicken breasts", "shrimp", "eggplant", "zucchini", "carrots", "bacon"],
   diet: ["vegetarian"],
   allergies: ["peanuts", "gluten"],
-  level: "expert"
+  level: "advanced"
 }
 
 test_user2 = User.new(test_user2_atttributes)
