@@ -19,8 +19,9 @@
         <div class="collapse" id="recipeSteps">
           <div class="card card-body">
             <ol>
-              <li>Preheat your oven to 375°F (190°C).</li>
-              <li>Beat the eggs and milk together until smooth.</li>
+              <% JSON.parse(@recipe.instructions).each do |instruction| %>
+                <li><%= instruction %></li>
+              <% end %>
             </ol>
           </div>
         </div>
