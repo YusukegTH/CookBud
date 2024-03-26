@@ -44,6 +44,10 @@
   </div>
 </div>
 
+<%= link_to preference_edit_path do %>
+  <button class="btn btn-info">Edit Preferences</button>
+<% end %>
+
 <div class="container">
   <% current_user.bookmarks.each do |bookmark| %>
     <p> <%= bookmark.recipe.name %> </p>

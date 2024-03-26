@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   get 'search_results', to: 'pages#search_results'
   get 'search_results', to: 'pages#searchAi'
   get 'search_results', to: 'pages#imageAi'
+  get 'preference_edit', to: 'pages#preference_edit'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -17,4 +18,5 @@ Rails.application.routes.draw do
     resources :bookmarks, only: [:create]
   end
   resources :bookmarks, only: [:destroy]
+  resources :preferences, only: [:update]
 end
