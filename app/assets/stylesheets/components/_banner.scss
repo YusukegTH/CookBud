@@ -15,8 +15,8 @@
 }
 
 .searchbutton {
-  padding: 16px 32px;
-  margin-top: 16px;
+  padding: 16px 38px;
+  margin-top: 20px;
   background-color: $white;
   color: $black;
   border-radius: 4px;
@@ -39,4 +39,11 @@
   font-weight: bold;
   text-align: center;
   margin-top: 20px;
+}
+
+#banner-subtit {
+  font-size: 0.9em;
+  font-weight: semi-bold;
+  text-align: center;
+  margin-top: 4px;
 }
