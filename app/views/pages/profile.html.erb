@@ -2,9 +2,8 @@
 <div class="profile-container">
   <%= link_to 'Back', :back, class: 'back-button' %>
 
-  <div class="profile-image">
-    <%= link_to edit_user_registration_path, class: 'edit-icon' do %>
-    <% end %>
+  <div class="container mt-4 d-flex flex-column align-items-center">
+  <h1 class="fa-solid fa-user fa-3x profile-avatar"></h1>
   </div>
 
   <div class="user-info">
@@ -39,18 +38,6 @@
   <h3>My Favorites</h3>
   <div class="favorites-list">
     <% current_user.bookmarks.each do |bookmark| %>
-      <div class="favorite-item">
-        <div class="thumbnail">
-          <img src="<%= bookmark.recipe.thumbnail_url %>" alt="<%= bookmark.recipe.name %>" class="img-fluid">
-
-        </div>
-        <div class="details">
-          <h4><%= bookmark.recipe.name %></h4>
-          <p><%= bookmark.recipe.description %></p>
-          <p><strong>Difficulty:</strong> <%= bookmark.recipe.difficulty %></p>
-          <p><strong>Duration:</strong> <%= bookmark.recipe.duration %></p>
-        </div>
-      </div>
     <% end %>
   </div>
 </div>
@@ -67,85 +54,3 @@
     }
   }
 </script>
-
-
-<style>
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.profile-info {
-  margin-bottom: 1.5rem;
-}
-
-.profile-info-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.info-label {
-  font-weight: bold;
-  margin-right: 0.5rem;
-}
-
-.edit-icon {
-  margin-left: auto;
-}
-
-.profile-image {
-  position: relative;
-  margin-bottom: 1.5rem;
-}
-
-.profile-image img {
-  width: 100%;
-  max-width: 200px;
-  height: auto;
-  border-radius: 50%;
-}
-
-.edit-icon {
-  position: absolute;
-  top: 5px;
-  right: 5px;
-  background-color: #fff;
-  padding: 0.25rem;
-  border-radius: 50%;
-}
-
-.preferences-section {
-  margin-top: 2rem;
-}
-
-.section-title {
-  margin-bottom: 1rem;
-}
-
-.preference-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.item-label {
-  font-weight: bold;
-  margin-right: 0.5rem;
-}
-
-.tag {
-  display: inline-block;
-  background-color: #f0f0f0;
-  color: #333;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  margin-right: 0.5rem;
-}
-
-.edit-preferences-btn {
-  display: block;
-  text-align: center;
-  margin-top: 1rem;
-}</style>
