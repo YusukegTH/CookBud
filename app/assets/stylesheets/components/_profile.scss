@@ -1,5 +1,5 @@
 .custom-btn2 {
-  padding: 8px;
+  padding: 16px;
   margin-top: 16px;
   margin-left: auto;
   margin-right: auto;
@@ -19,12 +19,21 @@
 .profile-avatar {
   width: 100px;
   height: 100px;
-  margin-top: 50px;
+  margin-top: 24px;
   padding: 24px;
   object-fit: cover;
   background-color: $white;
   border: 1px solid $c_primary;
   border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.avatar-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .card-header {
@@ -88,3 +97,4 @@
   border-radius: 0.25rem;
   margin-right: 0.5rem;
 }
+
