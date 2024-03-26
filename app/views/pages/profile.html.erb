@@ -1,58 +1,57 @@
-<div class="container mt-4">
-  <div class="text-center">
-    <h2>My Profile</h2>
-    <div class="card mt-3 mx-auto" style="max-width: 18rem;">
-      <div class="card-header">Profile Details</div>
-      <div class="card-body">
-        <div id="userDisplay">
-          <p class="card-text">Username: <%= @user.username %></p>
-          <p class="card-text">First name: <%= @user.first_name %></p>
-          <p class="card-text">Last name: <%= @user.last_name %></p>
-          <p class="card-text">Email: <%= @user.email %></p>
-          <div class="d-flex justify-content-between">
-            <button class="btn btn-info" onclick="toggleEdit('user')">Edit Profile</button>
-            <%= link_to destroy_user_session_path, :class => "navigation-bar-link", data: {turbo_method: :delete, turbo_confirm: 'Are you sure?' } do %>
-              <button class="btn btn-danger">Logout</button>
-            <% end %>
-          </div>
+<div class="profile-container">
+  <%= link_to 'Back', :back, class: 'back-button' %>
+
+  <div class="profile-image">
+    <%= link_to edit_user_registration_path, class: 'edit-icon' do %>
+    <% end %>
+  </div>
+
+  <div class="user-info">
+    <h1><%= @user.first_name %> <%= @user.last_name %></h1>
+    <p class="username"> Username: <%= @user.username %></p>
+    <p class="email"> Email: <%= @user.email %></p>
+    <%# <p class= "level"> <%= @user.level%>
+  </div>
+
+  <div class="preferences">
+    <div class="preferences-header">
+      <h2>Preferences</h2>
+      <%= link_to '#', class: 'edit-icon' do %>
+      <% end %>
+    </div>
+    <div class="preferences-body">
+      <p>Appliances:</p>
+      <% @user.preference.appliances.each do |appliance| %>
+        <span class="tag"><%= appliance %></span>
+      <% end %>
+
+      <p>Ingredients:</p>
+      <% @user.preference.ingredients.each do |ingredient| %>
+        <span class="tag"><%= ingredient %></span>
+      <% end %>
+    </div>
+    <%= link_to 'Edit Preferences', edit_user_registration_path, class: 'btn-edit-preferences' %>
+  </div>
+
+<div class="container">
+  <h3>My Favorites</h3>
+  <div class="favorites-list">
+    <% current_user.bookmarks.each do |bookmark| %>
+      <div class="favorite-item">
+        <div class="thumbnail">
+          <img src="<%= bookmark.recipe.thumbnail_url %>" alt="<%= bookmark.recipe.name %>" class="img-fluid">
         </div>
-        <div id="userEdit" style="display: none;">
-          <%= form_for(@user, as: :user, url: user_registration_path, html: { method: :patch }) do |f| %>
-            <%= f.label :username %>
-            <%= f.text_field :username, class: 'form-control' %>
-            <%= f.label :first_name %>
-            <%= f.text_field :first_name, class: 'form-control' %>
-            <%= f.label :last_name %>
-            <%= f.text_field :last_name, class: 'form-control' %>
-            <%= f.label :email %>
-            <%= f.email_field :email, class: 'form-control' %>
-
-            <h3>Preferences</h3>
-            <%= f.fields_for :preference, @user.preference do |p| %>
-              <div class="form-group">
-                <%= p.label :level, 'Cooking Level' %>
-                <%= p.select :level, options_for_select(["Beginner", "Intermediate", "Advanced"], @user.preference.level), {}, {class: 'form-control'} %>
-              </div>
-            <% end %>
-
-            <%= f.submit "Save Changes", class: "btn btn-success" %>
-            <button type="button" class="btn btn-secondary" onclick="toggleEdit('user')">Cancel</button>
-          <% end %>
+        <div class="details">
+          <h4><%= bookmark.recipe.name %></h4>
+          <p><%= bookmark.recipe.description %></p>
+          <p><strong>Difficulty:</strong> <%= bookmark.recipe.difficulty %></p>
+          <p><strong>Duration:</strong> <%= bookmark.recipe.duration %></p>
         </div>
       </div>
-    </div>
+    <% end %>
   </div>
 </div>
 
-<%= link_to preference_edit_path do %>
-  <button class="btn btn-info">Edit Preferences</button>
-<% end %>
-
-<div class="container">
-  <% current_user.bookmarks.each do |bookmark| %>
-    <p> <%= bookmark.recipe.name %> </p>
-  <% end %>
-</div>
 
 
 <script>
