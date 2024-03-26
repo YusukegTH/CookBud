@@ -6,26 +6,26 @@
 </div>
 
 <div class="container mt-3">
-  <div class="row">
-    <% @recipes.each do |recipe| %>
+  <% @recipes.each do |recipe| %>
+    <div class="row">
       <div class="space col-md-12 mb-4">
         <div class="card recipe-card">
           <%= link_to recipe_path(recipe) do %>
             <div class="image-container"style="background-image: url(<%= url_for(recipe.photo) %>)">
-              <%#= image_tag(recipe.photo, class: "card-img-top", alt: "#{recipe.name} Image") %>
             </div>
             <div class="card-body">
               <h3 class="card-title"><%= recipe.name %></h3>
-              <p class="card-subtitle"><%= recipe.description[0,70] %>...</p>
-              <div class="card-footer d-flex justify-content-between">
-                <p><%= recipe.difficulty.capitalize %></p>
-                <p><%= recipe.duration %> min</p>
-              </div>
+              <p class="card-description"><%= recipe.description[0,70] %>...</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <p><%= recipe.difficulty.capitalize %></p>
+              <p><%= recipe.duration %> min</p>
             </div>
       </div>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>
+
 
 
 
