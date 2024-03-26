@@ -1,14 +1,14 @@
 <div class="banner">
   <div class="overlay d-flex flex-column justify-content-center align-items-center">
-    <h1>Cookbud</h1>
-    <%= link_to 'Search Recipes', search_path, class: 'btn btn-primary' %>
+    <h1><span id="welcome">Welcome to</span><br><span id="cookbud">Cookbud</span></h1>
+    <%= link_to 'Search Recipes', search_path, class: 'searchbutton' %>
   </div>
 </div>
 
 
 
 <div class="container mt-3">
-<h3>Recommended Recipes</h3>
+<h2 class="recommend">Recommended Recipes:</h2>
   <div class="row">
     <% @recipes.each do |recipe| %>
       <div class="space col-md-12 mb-4">
