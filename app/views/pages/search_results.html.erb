@@ -1,27 +1,39 @@
-<h1>Search results</h1>
-<div class="container mt-3">
-  <div data-controller="search-results" class="row">
-    <% @filtered_recipes.each do |recipe| %>
-      <div class="col-md-12 mb-4 search-results">
+<div class="container mt-3" data-controller="ai-activator" data-search="<%= @search.to_json %>" data-generated-recipes="<%= @generated_recipes.to_json %>">
+  <h3 class="recommend">Search Results</h3>
+    <div class="row">
+      <% @filtered_recipes.each do |recipe| %>
+        <div class="space col-md-12 mb-4 search-results" data-recipe-id="<%= recipe.id %>">
           <div class="card recipe-card">
             <%= link_to recipe_path(recipe) do %>
-              <%= image_tag(recipe.photo, alt: 'Recipe Photo', class: 'img-fluid') %>
+              <div class="image-container" style="background-image: url(<%= url_for(recipe.photo) %>)"></div>
               <div class="card-body">
                 <h3 class="card-title"><%= recipe.name %></h3>
-                <p class="card-subtitle mb-2 text-muted"><%= recipe.description.truncate(70) %></p>
-                <div class="card-footer d-flex justify-content-between">
-                  <small class="text-muted"><%= recipe.difficulty.capitalize %></small>
-                  <small class="text-muted">⏲️ <%= recipe.duration %></small>
-                </div>
+                <p class="card-description"><%= recipe.description[0,70] %>...</p>
+              </div>
+              <div class="card-footer d-flex justify-content-between">
+                <p><%= recipe.difficulty.capitalize %></p>
+                <p><%= recipe.duration %> min</p>
               </div>
             <% end %>
+            <div data-controller="bookmark" class="bookmarkcss">
+              <% if user_signed_in? %>
+              <%# If the recipe is already bookmarked %>
+                <% if current_user.bookmarks.find_by(recipe_id: recipe.id) %>
+                  <% bookmark = current_user.bookmarks.find_by(recipe_id: recipe.id).id %>
+                  <i data-action="click->bookmark#delete" data-bookmark-id="<%= bookmark %>" class="fa-solid fa-star" style="color: #669158;"></i>
+              <%# If the recipe isn't bookmarked yet %>
+                <% else %>
+                  <i data-action="click->bookmark#add" data-recipe-id="<%= recipe.id %>" data-user-id="<%= current_user.id %>" class="fa-regular fa-star" style="color: #669158;"></i>
+                <% end %>
+              <% else %>
+                <%= link_to new_user_session_path do %>
+                  <i class="fa-regular fa-star" style="color: #669158;"></i>
+                <% end %>
+              <% end %>
+            </div>
           </div>
         </div>
-    <% end %>
-    <div class="d-flex justify-content-center align-items-center">
-      <button data-action="click->search-results#load" class="btn btn-outline-secondary">Load more</button>
+      <% end %>
     </div>
-
-
-  </div>
+    <button type="button" class="custom-btn1" data-action="click->ai-activator#loadMore">Load More</button>
 </div>

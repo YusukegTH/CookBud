@@ -33,36 +33,42 @@ export default class extends Controller {
 
   search(event) {
     event.preventDefault();
-    let appliances = "";
-    let ingredients = "";
-    let diet = "";
-    let allergies = "";
+    let appliances = [];
+    let ingredients = [];
+    let diet = [];
+    let allergies = [];
     const level = document.querySelector('#level').value.toLowerCase();
     const duration = document.querySelector('#duration').value.toLowerCase();
     const searchAppliances = document.querySelectorAll('#appliances');
     searchAppliances.forEach((appliance) => {
-      appliances += `${appliance.innerText.toLowerCase()},`;
+      appliances.push(appliance.innerText.toLowerCase());
     });
     const searchIngredients = document.querySelectorAll('#ingredients');
     searchIngredients.forEach((ingredient) => {
-      ingredients += `${ingredient.innerText.toLowerCase()},`;
+      ingredients.push(ingredient.innerText.toLowerCase());
     });
     const searchDiet = document.querySelectorAll('#diet');
     searchDiet.forEach((diet_item) => {
-      diet += `${diet_item.innerText.toLowerCase()},`;
+      diet.push(diet_item.innerText.toLowerCase());
     });
     const searchAllergies = document.querySelectorAll('#allergies');
     searchAllergies.forEach((allergy) => {
-      allergies += `${allergy.innerText.toLowerCase()},`;
+      allergies.push(allergy.innerText.toLowerCase());
     });
     const url = "/search_results";
-    const params = new URLSearchParams({
+    const search = {
       appliances: appliances,
       ingredients: ingredients,
       diet: diet,
       allergies: allergies,
       level: level,
       duration: duration
+    };
+    const params = new URLSearchParams({
+      search: JSON.stringify(search),
+      filtered_recipes: [],
+      generated_recipes: [],
+      generate: false
     });
     window.location.href = `${url}?${params}`;
 
