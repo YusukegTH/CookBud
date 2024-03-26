@@ -5,7 +5,7 @@
   overflow: hidden;
   width: 100%;
   max-width: 400px;
-  margin: 0 auto;
+  margin: 16px auto;
   background-color:$white;
 }
 
@@ -53,9 +53,9 @@
 }
 
 .image-container {
-  align-items: center;
-  padding: 16px 16px 0px 16px;
-  width: 100%; /* Controls the image size */
+  padding: 16px;
   height: 220px; /* Matches width for consistency */
-  overflow: hidden;
+  margin: 16px;
+  background-size: cover;
+  background-position: center;
 }

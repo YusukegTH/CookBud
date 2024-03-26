@@ -11,8 +11,8 @@
       <div class="space col-md-12 mb-4">
         <div class="card recipe-card">
           <%= link_to recipe_path(recipe) do %>
-            <div class="image-container">
-              <%= image_tag(recipe.photo, class: "card-img-top", alt: "#{recipe.name} Image") %>
+            <div class="image-container"style="background-image: url(<%= url_for(recipe.photo) %>)">
+              <%#= image_tag(recipe.photo, class: "card-img-top", alt: "#{recipe.name} Image") %>
             </div>
             <div class="card-body">
               <h3 class="card-title"><%= recipe.name %></h3>
@@ -22,9 +22,11 @@
                 <p><%= recipe.duration %> min</p>
               </div>
             </div>
-          <% end %>
-        </div>
       </div>
+    <% end %>
+  </div>
+</div>
+
 
 
     <%# Bookmark %>
@@ -52,4 +54,3 @@
 
     <% end %>
   </div>
-</div>
