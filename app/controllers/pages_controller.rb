@@ -16,7 +16,6 @@ class PagesController < ApplicationController
 
   def cooking
     @recipe = Recipe.find(params[:recipe_id])
-
   end
 
   def search_results
@@ -25,6 +24,10 @@ class PagesController < ApplicationController
     @search_ai = searchAi
     @image_ai = imageAi
     @filtered_recipes.append(@recipe)
+  end
+
+  def preference_edit
+    @preference = current_user.preference
   end
 
   private
