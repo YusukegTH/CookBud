@@ -16,3 +16,8 @@
 @import "components/Search_form";
 @import "components/button";
 @import "components/profile";
+
+body {
+  background-image: url("background.png");
+  background-repeat: repeat;
+}
