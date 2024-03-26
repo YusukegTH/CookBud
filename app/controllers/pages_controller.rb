@@ -21,9 +21,9 @@ class PagesController < ApplicationController
   def search_results
     @search = search_preference
     @filtered_recipes = filter_with_preference(@search)
-    @search_ai = searchAi(@search)
-    @image_ai = imageAi
-    @filtered_recipes.append(@recipe)
+    # @search_ai = searchAi(@search)
+    # @image_ai = imageAi
+    # @filtered_recipes.append(@recipe)
   end
 
   def preference_edit
@@ -75,10 +75,10 @@ class PagesController < ApplicationController
 
   def search_preference
     preference = {}
-    params[:appliances].size > 1 ? preference[:appliances] = params[:appliances].chop.split(',') : preference[:appliances] = ""
-    params[:ingredients].size > 1 ? preference[:ingredients] = params[:ingredients].chop.split(',') : preference[:ingredients] = ""
-    params[:diet].size > 1 ? preference[:diet] = params[:diet].chop.split(',') : preference[:diet] = ""
-    params[:allergies].size > 1 ? preference[:allergies] = params[:allergies].chop.split(',') : preference[:allergies] = ""
+    params[:appliances].size > 1 ? preference[:appliances] = params[:appliances].chop.split(',').map(&:strip) : preference[:appliances] = ""
+    params[:ingredients].size > 1 ? preference[:ingredients] = params[:ingredients].chop.split(',').map(&:strip) : preference[:ingredients] = ""
+    params[:diet].size > 1 ? preference[:diet] = params[:diet].chop.split(',').map(&:strip) : preference[:diet] = ""
+    params[:allergies].size > 1 ? preference[:allergies] = params[:allergies].chop.split(',').map(&:strip) : preference[:allergies] = ""
     preference[:level] = params[:level]
     preference[:duration] = params[:duration]
     preference
