@@ -6,43 +6,51 @@
 </div>
 
 <div class="container mt-3">
+  <div class="row">
+
   <% @recipes.each do |recipe| %>
-    <div class="row">
-      <div class="space col-md-12 mb-4">
-        <div class="card recipe-card">
-          <%= link_to recipe_path(recipe) do %>
-            <div class="image-container"style="background-image: url(<%= url_for(recipe.photo) %>)">
-              <div data-controller="bookmark" class= "bookmarkcss">
-                <% if user_signed_in? %>
-                  <% if current_user.bookmarks.find_by(recipe_id: recipe.id) %>
-                    <% bookmark = current_user.bookmarks.find_by(recipe_id: recipe.id).id %>
-                    <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete } do %>
-                      <i id="bookmarked" data-action="click->bookmark#toggle" class="fa-solid fa-bookmark"></i>
-                      <i id="not-bookmarked" class="fa-regular fa-bookmark d-none"></i>
+
+    <div class="space col-md-12 mb-4">
+
+        <%= link_to recipe_path(recipe) do %>
+          <div class="card recipe-card">
+
+              <div class="image-container"style="background-image: url(<%= url_for(recipe.photo) %>)">
+                <div data-controller="bookmark" class= "bookmarkcss">
+                  <% if user_signed_in? %>
+                    <% if current_user.bookmarks.find_by(recipe_id: recipe.id) %>
+                      <% bookmark = current_user.bookmarks.find_by(recipe_id: recipe.id).id %>
+                      <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete } do %>
+                        <i id="bookmarked" data-action="click->bookmark#toggle" class="fa-solid fa-bookmark"></i>
+                        <i id="not-bookmarked" class="fa-regular fa-bookmark d-none"></i>
+                      <% end %>
+                    <% else %>
+                      <%= link_to recipe_bookmarks_path(recipe), data: { turbo_method: :post } do %>
+                        <i id="not-bookmarked" data-action="click->bookmark#toggle" class="fa-regular fa-bookmark"></i>
+                        <i id="bookmarked" class="fa-solid fa-bookmark d-none"></i>
+                      <% end %>
                     <% end %>
                   <% else %>
-                    <%= link_to recipe_bookmarks_path(recipe), data: { turbo_method: :post } do %>
-                      <i id="not-bookmarked" data-action="click->bookmark#toggle" class="fa-regular fa-bookmark"></i>
-                      <i id="bookmarked" class="fa-solid fa-bookmark d-none"></i>
+                    <%= link_to new_user_session_path do %>
+                      <i id="not-bookmarked" class="fa-regular fa-bookmark"></i>
                     <% end %>
                   <% end %>
-                <% else %>
-                  <%= link_to new_user_session_path do %>
-                    <i id="not-bookmarked" class="fa-regular fa-bookmark"></i>
-                  <% end %>
-                <% end %>
-              <% end %>
+                </div>
               </div>
-            </div>
-            <div class="card-body">
-              <h3 class="card-title"><%= recipe.name %></h3>
-              <p class="card-description"><%= recipe.description[0,70] %>...</p>
-            </div>
-            <div class="card-footer d-flex justify-content-between">
-              <p><%= recipe.difficulty.capitalize %></p>
-              <p><%= recipe.duration %> min</p>
-            </div>
+
+
+                  <div class="card-body">
+                    <h3 class="card-title"><%= recipe.name %></h3>
+                    <p class="card-description"><%= recipe.description[0,70] %>...</p>
+                  </div>
+
+                  <div class="card-footer d-flex justify-content-between">
+                    <p><%= recipe.difficulty.capitalize %></p>
+                    <p><%= recipe.duration %> min</p>
+                  </div>
+        <% end %>
       </div>
     </div>
   <% end %>
+  </div>
 </div>
