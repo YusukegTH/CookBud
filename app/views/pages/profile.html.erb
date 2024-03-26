@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class="profile-container">
   <%= link_to 'Back', :back, class: 'back-button' %>
 
@@ -30,7 +31,10 @@
         <span class="tag"><%= ingredient %></span>
       <% end %>
     </div>
-    <%= link_to 'Edit Preferences', edit_user_registration_path, class: 'btn-edit-preferences' %>
+    <%= link_to preference_edit_path do %>
+  <button class="custom-btn2">Edit Preferences</button>
+<% end %>
+
   </div>
 
 <div class="container">
@@ -40,6 +44,7 @@
       <div class="favorite-item">
         <div class="thumbnail">
           <img src="<%= bookmark.recipe.thumbnail_url %>" alt="<%= bookmark.recipe.name %>" class="img-fluid">
+
         </div>
         <div class="details">
           <h4><%= bookmark.recipe.name %></h4>
@@ -51,9 +56,6 @@
     <% end %>
   </div>
 </div>
-
-
-
 <script>
   function toggleEdit(section) {
     var displaySection = document.getElementById(section + 'Display');
