@@ -2,7 +2,7 @@ class ReviewsController < ApplicationController
   def create
     @recipe = Recipe.find(params[:recipe_id])
     @review = @recipe.reviews.build(review_params)
-
+    @review.user = current_user
     if @review.save
       redirect_to @recipe, notice: 'Review was successfully created.'
     else

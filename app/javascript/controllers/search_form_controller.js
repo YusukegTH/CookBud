@@ -48,8 +48,8 @@ export default class extends Controller {
       ingredients += `${ingredient.innerText.toLowerCase()},`;
     });
     const searchDiet = document.querySelectorAll('#diet');
-    searchDiet.forEach((diet) => {
-      diet += `${diet.innerText.toLowerCase()},`;
+    searchDiet.forEach((diet_item) => {
+      diet += `${diet_item.innerText.toLowerCase()},`;
     });
     const searchAllergies = document.querySelectorAll('#allergies');
     searchAllergies.forEach((allergy) => {
