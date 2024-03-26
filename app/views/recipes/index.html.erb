@@ -25,6 +25,31 @@
           <% end %>
         </div>
       </div>
+
+
+    <%# Bookmark %>
+    <div data-controller="bookmark">
+      <% if user_signed_in? %>
+        <% if current_user.bookmarks.find_by(recipe_id: recipe.id) %>
+          <% bookmark = current_user.bookmarks.find_by(recipe_id: recipe.id).id %>
+          <%= link_to bookmark_path(bookmark), data: { turbo_method: :delete } do %>
+            <i id="bookmarked" data-action="click->bookmark#toggle" class="fa-solid fa-bookmark"></i>
+            <i id="not-bookmarked" class="fa-regular fa-bookmark d-none"></i>
+          <% end %>
+        <% else %>
+          <%= link_to recipe_bookmarks_path(recipe), data: { turbo_method: :post } do %>
+            <i id="not-bookmarked" data-action="click->bookmark#toggle" class="fa-regular fa-bookmark"></i>
+            <i id="bookmarked" class="fa-solid fa-bookmark d-none"></i>
+          <% end %>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path do %>
+          <i id="not-bookmarked" class="fa-regular fa-bookmark"></i>
+        <% end %>
+      <% end %>
+    </div>
+
+
     <% end %>
   </div>
 </div>

@@ -44,6 +44,12 @@
   </div>
 </div>
 
+<div class="container">
+  <% current_user.bookmarks.each do |bookmark| %>
+    <p> <%= bookmark.recipe.name %> </p>
+  <% end %>
+</div>
+
 
 <script>
   function toggleEdit(section) {

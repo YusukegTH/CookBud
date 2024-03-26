@@ -14,5 +14,7 @@ Rails.application.routes.draw do
   resources :recipes, only: [:index, :show] do
     resources :reviews, only: [:create]
     get 'cooking', to: 'pages#cooking'
+    resources :bookmarks, only: [:create]
   end
+  resources :bookmarks, only: [:destroy]
 end
