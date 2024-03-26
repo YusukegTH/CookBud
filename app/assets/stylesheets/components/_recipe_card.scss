@@ -1,15 +1,8 @@
-.container {
-  margin: 3rem auto;
-  padding: 0 15px;
-  max-width: 1200px;
-}
-
 .recipe-card {
   border: none;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
-  font-family: "Open Sans", sans-serif;
   transition: box-shadow 0.3s ease;
   width: 100%;
   max-width: 300px;
@@ -27,6 +20,7 @@
   height: auto; /* Maintains aspect ratio */
   object-fit: cover;
 }
+
 .card-body {
   background: $white;
 }
@@ -56,8 +50,6 @@
   padding-top: 3px;
   font-weight: bold;
 }
-
-
 
 .image-container {
   align-items: center;
