@@ -1,7 +1,7 @@
 .recipe-card {
   border: none;
   border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   width: 100%;
   max-width: 400px;
@@ -30,7 +30,6 @@
 .card-description {
   margin: 0;
   padding: 8px 0;
-  font-size: 1rem;
 }
 
 .card-title {
@@ -45,7 +44,9 @@
   padding: 4px 0 4px 0;
   margin: 0 16px 0 16px;
   border-top: solid 1px $c_primary;
-  font-weight: bold;
+  font-weight: 600;
+  color: $black;
+  opacity: 0.9;
 }
 
 .card-footer p {
@@ -53,9 +54,17 @@
 }
 
 .image-container {
-  height: 220px; /* Matches width for consistency */
+  position: relative;
+  height: 220px;
   margin: 16px 16px 0px 16px;
   background-size: cover;
   background-position: center;
   border-radius: 5px;
+}
+
+.bookmark {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
 }
