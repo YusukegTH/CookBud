@@ -16,15 +16,18 @@ class PagesController < ApplicationController
 
   def cooking
     @recipe = Recipe.find(params[:recipe_id])
-
   end
 
   def search_results
     @search = search_preference
     @filtered_recipes = filter_with_preference(@search)
-    @search_ai = searchAi
+    @search_ai = searchAi(@search)
     @image_ai = imageAi
     @filtered_recipes.append(@recipe)
+  end
+
+  def preference_edit
+    @preference = current_user.preference
   end
 
   private
@@ -38,8 +41,8 @@ class PagesController < ApplicationController
   end
 
   # makes a prompt to OpenAI API to generate a recipe and call the imageAi method to attach a photo to the recipe
-  def searchAi
-    @content = set_recipe_content
+  def searchAi(search)
+    @content = set_recipe_content(search)
     recipe_string = @content
     recipe_name_match = recipe_string.match(/Name: (.+)(?=Ingredients:)/m)
     @recipe_name = recipe_name_match ? recipe_name_match[1] : "Not specified"
@@ -59,17 +62,16 @@ class PagesController < ApplicationController
     @recipe.save!
   end
 
-  def set_recipe_content
+  def set_recipe_content(search)
     client = OpenAI::Client.new
-    test_user1 = User.last
-    prompt = "What´s a recipe that uses only #{test_user1.preference.ingredients.join(', ')} and #{test_user1.preference.appliances.join(', ')} to cook. Give me only the name with Name:, the ingredients used in the recipe, the duration, the difficulty defined as Beginner, Intermediate, Advanced and a Description, followed by the steps you need to cook it without any of your own answer like 'Here is a simple recipe'."
+    # test_user1 = User.last
+    prompt = "What´s a recipe that uses only #{search[:ingredients].join(', ')} and #{search[:appliances].join(', ')} to cook. Give me only the name with Name:, the ingredients used in the recipe, the duration, the difficulty defined as Beginner, Intermediate, Advanced and a Description, followed by the steps you need to cook it without any of your own answer like 'Here is a simple recipe'."
     chaptgpt_response = client.chat(parameters: {
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt}]
     })
     @content = chaptgpt_response["choices"][0]["message"]["content"]
   end
-
 
   def search_preference
     preference = {}
@@ -94,7 +96,6 @@ class PagesController < ApplicationController
       search_results = Recipe.all
     end
     search_results = search_results.where("duration <= ?", search[:duration].to_i) if search[:duration] != ""
-
     search_results.each do |recipe|
       if contained_in?(recipe.appliances, search[:appliances]) && contained_in?(recipe.ingredients, search[:ingredients]) && contained_in?(recipe.diet, search[:diet])
         filtered_results << recipe
@@ -104,7 +105,7 @@ class PagesController < ApplicationController
   end
 
   def contained_in?(recipe, search)
-    JSON.parse(recipe).all? { |item| search.include?(item)}
+    JSON.parse(recipe).all? { |item| search.include?(item) }
   end
 
   def check_allergies?(preference, recipe)
