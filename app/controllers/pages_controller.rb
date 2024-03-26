@@ -27,6 +27,57 @@ class PagesController < ApplicationController
     @filtered_recipes.append(@recipe)
   end
 
+  def load_more_recipes
+    @recipe = generate_more_recipe
+    render json: { recipe: @recipe }
+  end
+
+  def generate_more_recipe
+    client = OpenAI::Client.new
+
+    response = client.completion.create(
+      engine: "davinci-codex",
+      prompt: "Generate a new recipe.",
+      max_tokens: 400
+    )
+
+    recipe_content = response["choices"][0]["text"]
+
+    recipe_name_match = recipe_content.match(/Name: (.+)(?=Ingredients:)/m)
+    recipe_name = recipe_name_match ? recipe_name_match[1] : "Not specified"
+
+    ingredients_match = recipe_content.match(/Ingredients: (.+)(?=Duration:)/m)
+    ingredients = ingredients_match ? ingredients_match[1] : "Not specified"
+
+    difficulty_match = recipe_content.match(/Difficulty: (.+)(?=Description:)/m)
+    difficulty = difficulty_match ? difficulty_match[1] : "Not specified"
+
+    duration_match = recipe_content.match(/Duration: (\d+)/)
+    duration = duration_match ? duration_match[1] : "Not specified"
+
+    description_match = recipe_content.match(/Description: (.+)/)
+    description = description_match ? description_match[1] : "Not specified"
+
+    instruction_match = recipe_content.match(/Steps:.*/m)
+    instructions = instruction_match ? instruction_match[0] : "Not specified"
+
+    recipe = Recipe.new(
+      name: recipe_name,
+      ingredients: ingredients,
+      instructions: instructions,
+      difficulty: difficulty,
+      duration: duration,
+      description: description
+    )
+
+    file = URI.open(imageAi(recipe))
+    recipe.photo.attach(io: file, filename: "#{recipe_name}.jpg", content_type: "image/png")
+
+    recipe.save!
+
+    recipe
+  end
+
   private
 
   # makes a prompt to OpenAI API to generate a photo
