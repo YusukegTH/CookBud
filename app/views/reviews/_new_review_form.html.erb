@@ -1,0 +1,6 @@
+<%= simple_form_for [review.recipe, review] do |f| %>
+  <%= f.input :rating, collection: (1..5).to_a, input_html: {data: {controller: "star-rating"}}, label: false %>
+  <%= f.label "Leave a comment" %>
+  <%= f.input :comment, label: false %>
+  <%= f.submit "Submit Review", class: "btn btn-primary"%>
+<% end %>

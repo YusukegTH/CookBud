@@ -26,29 +26,21 @@
           </div>
         </div>
       </div>
-
-      <div class="my-2">
-        <button class="custom-btn dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#leaveReview" aria-expanded="false" aria-controls="leaveReview">
-          Reviews
-        </button>
-        <div class="collapse" id="leaveReview">
-          <div class="card card-body">
-            <%= form_with(model: [@recipe, @recipe.reviews.build], local: true) do |form| %>
-              <div class="rating mb-3" data-controller="rating" data-action="mouseleave->rating#reset">
-                <% (1..5).reverse_each do |rating| %>
-                  <%= form.radio_button :rating, rating, id: "rating-#{rating}", class: "rating-input", hidden: true, "data-rating-target" => "star" %>
-                  <%= form.label "rating-#{rating}", "★", class: "star", title: "#{rating} stars", data: { action: "mouseenter->rating#highlight click->rating#setRating" } %>
-                <% end %>
-              </div>
-              <div class="mb-3">
-                <%= form.label :comment, 'Your comment' %>
-                <%= form.text_area :comment, rows: 3, class: 'form-control' %>
-              </div>
-              <%= form.submit 'Submit Review', class: 'btn btn-success' %>
-            <% end %>
+      <% if user_signed_in? %>
+        <div class="my-2">
+          <button class="custom-btn dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#leaveReview" aria-expanded="false" aria-controls="leaveReview">
+            Reviews
+          </button>
+          <div class="collapse" id="leaveReview">
+            <div class="card card-body">
+              <% review = Review.new %>
+              <% review.user = current_user %>
+              <% review.recipe = @recipe %>
+              <%= render partial: "reviews/new_review_form", locals: { review: review } %>
+            </div>
           </div>
         </div>
-      </div>
+      <% end %>
       <div>
         <%= link_to recipe_cooking_path(@recipe) do %>
           <button type="button" class="custom-btn1">Start Cooking</button>
