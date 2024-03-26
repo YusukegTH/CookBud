@@ -28,8 +28,6 @@
 
 
 
-
-    <%# Bookmark %>
     <div data-controller="bookmark">
       <% if user_signed_in? %>
         <% if current_user.bookmarks.find_by(recipe_id: recipe.id) %>

@@ -1,5 +1,8 @@
 <div class="container text-center pt-5">
   <h3>Recipe search</h3>
+  <%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
+    <i class="fa-solid fa-backward-step"></i>
+  <% end %>
   <% if user_signed_in? %>
     <%= render partial: "pages/search", user: @user %>
   <% else %>
