@@ -19,24 +19,14 @@ class PagesController < ApplicationController
   end
 
   def search_results
-    if !JSON.parse(params[:generate]) # Comming from search page
-      @search = search_results_params
-      @filtered_recipes = filter_with_preference(@search)
-      @generated_recipes = ""
-    elsif JSON.parse(params[:generate])
-      @search = search_results_params
+    @search = search_results_params
+    if JSON.parse(params[:generate])
       @filtered_recipes = get_filtered_results
-      if params[:generated_recipes] == "[]" # First time generating AI recipe
-        
-        @generated_recipes = [searchAi(@search)]
-      else # When AI recipes have already been generated
-
-        @generated_recipes = get_filtered_results
-      end
+      @filtered_recipes.push(searchAi(@search))
+    else
+      @filtered_recipes = filter_with_preference(@search)
+      @generated_recipes = []
     end
-    # @search_ai = searchAi(@search)
-    # @image_ai = imageAi
-    # @filtered_recipes.append(@recipe)
   end
 
   def preference_edit
@@ -68,9 +58,18 @@ class PagesController < ApplicationController
     description = description_match ? description_match[1] : "Not specified"
     instruction_match = recipe_string.match(/Steps:.*/m)
     instructions = instruction_match ? instruction_match : "Not specified"
-    recipe = Recipe.new(name: recipe_name, ingredients: ingredients, appliances: User.last.preference.appliances.join(', '), instructions: instructions, difficulty: difficulty, duration: duration, description: description, diet: User.last.preference.diet.join(', '))
+    search[:diet] == "" ? diet = [] : diet = search[:diet]
+    recipe = Recipe.new(name: recipe_name.strip,
+                        ingredients: ingredients.strip.split(',').map(&:strip),
+                        appliances: search[:appliances],
+                        instructions: instructions.to_s.strip.split("\n").drop(1).map { |step| step[3..] },
+                        difficulty: difficulty.strip.downcase,
+                        duration: duration.to_i,
+                        description: description,
+                        diet: diet)
     file = URI.open(imageAi(recipe))
     recipe.photo.attach(io: file, filename: "#{recipe_name}.jpg", content_type: "image/png")
+    recipe.save
     recipe
   end
 
@@ -102,20 +101,6 @@ class PagesController < ApplicationController
     JSON.parse(params[:filtered_recipes]).each { |recipe_id| filtered_recipes << Recipe.find(recipe_id.to_i)}
     filtered_recipes
   end
-
-  # def get_generated_recipes
-  #   generated_recipes = []
-  #   JSON.parse(params[:generated_recipes]).each do |recipe|
-  #     recipe_attributes = {
-  #       name: recipe["name"],
-  #       ingredients: recipe["ingredients"],
-  #       appliances: recipe["appliances"],
-  #       instructions: recipe["instructions"],
-  #       difficulty: recipe["difficulty"],
-  #       duration: recipe["duration"],
-  #     }
-  #   end
-  # end
 
   # Search results algorithm
 
