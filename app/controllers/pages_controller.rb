@@ -76,7 +76,7 @@ class PagesController < ApplicationController
   def set_recipe_content(search)
     client = OpenAI::Client.new
     # test_user1 = User.last
-    prompt = "What´s a recipe that uses only #{search[:ingredients].join(', ')} and #{search[:appliances].join(', ')} to cook. Give me only the name with Name:, the ingredients used in the recipe, the duration, the difficulty defined as Beginner, Intermediate, Advanced and a Description, followed by the steps you need to cook it without any of your own answer like 'Here is a simple recipe'."
+    prompt = "What´s a #{search[:diet]} recipe that uses only #{search[:ingredients].join(', ')} and #{search[:appliances].join(', ')} to cook. Give me only the name with Name:, the ingredients used in the recipe, the duration, the difficulty defined as Beginner, Intermediate, Advanced and a Description, followed by the steps you need to cook it without any of your own answer like 'Here is a simple recipe'."
     chaptgpt_response = client.chat(parameters: {
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt}]
