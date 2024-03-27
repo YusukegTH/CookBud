@@ -16,3 +16,11 @@
 @import "components/Search_form";
 @import "components/button";
 @import "components/profile";
+
+body {
+  background-image: url("background.png");
+  background-repeat: repeat;
+  background-attachment: fixed;
+  background-position: center top;
+  background-size: cover;
+}

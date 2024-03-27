@@ -1,7 +1,7 @@
 .recipe-card {
   border: none;
   border-radius: 10px;
-  box-shadow: 4px 8px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 2px 2px 4px rgba(44, 44, 44, 0.1);
   overflow: hidden;
   width: 100%;
   max-width: 400px;
@@ -12,6 +12,7 @@
 .space {
   margin: 0 0 0 0;
 }
+
 .recipe-card a {
   text-decoration: none;
   color: $black;
