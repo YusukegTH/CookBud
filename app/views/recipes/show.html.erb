@@ -18,47 +18,49 @@
         <%= @recipe.description %>
       </p>
 
-      <div class="mb-2">
-        <button class="custom-btn dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#recipeSteps" aria-expanded="false" aria-controls="recipeSteps">
-          Steps
-        </button>
-        <div class="collapse" id="recipeSteps">
-          <div class="card card-body">
-            <ol>
-              <% JSON.parse(@recipe.instructions).each do |instruction| %>
-                <li><%= instruction %></li>
-              <% end %>
-            </ol>
-          </div>
-        </div>
-      </div>
-      <% if user_signed_in? %>
+      <div data-controller="dropdown">
         <div class="mb-2">
-          <button class="custom-btn dropdown-toggle" type="button" data-bs-toggle="collapse" data-bs-target="#leaveReview" aria-expanded="false" aria-controls="leaveReview">
-            Reviews
+          <button data-action="click->dropdown#toggle" class="custom-btn dropdown-toggle" type="button">
+            Steps
           </button>
-          <div class="collapse" id="leaveReview">
+          <div class="d-none recipe-dropdown">
             <div class="card card-body">
-              <% review = Review.new %>
-              <% review.user = current_user %>
-              <% review.recipe = @recipe %>
-              <%= render partial: "reviews/new_review_form", locals: { review: review } %>
-
-              <div class="review-section">
-                <h2 class="review-section-title">Reviews</h2>
-                <hr>
-                <% @reviews.each do |review|%>
-                  <div class="review-user">
-                    <h3><%= review.user.username %></h3>
-                    <p class="review-stars"><%= '★' * review.rating %></p>
-                    <p class="review-comment"><%= review.comment %></p>
-                  </div>
+              <ol>
+                <% JSON.parse(@recipe.instructions).each do |instruction| %>
+                  <li><%= instruction %></li>
                 <% end %>
-              </div>
+              </ol>
             </div>
           </div>
         </div>
-      <% end %>
+        <% if user_signed_in? %>
+          <div class="mb-2">
+            <button data-action="click->dropdown#toggle" class="custom-btn dropdown-toggle" type="button">
+              Reviews
+            </button>
+            <div class="d-none recipe-dropdown">
+              <div class="card card-body">
+                <% review = Review.new %>
+                <% review.user = current_user %>
+                <% review.recipe = @recipe %>
+                <%= render partial: "reviews/new_review_form", locals: { review: review } %>
+
+                <div class="review-section">
+                  <h2 class="review-section-title">Reviews</h2>
+                  <hr>
+                  <% @reviews.each do |review|%>
+                    <div class="review-user">
+                      <h3><%= review.user.username %></h3>
+                      <p class="review-stars"><%= '★' * review.rating %></p>
+                      <p class="review-comment"><%= review.comment %></p>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% end %>
+      </div>
       <div>
         <%= link_to recipe_cooking_path(@recipe) do %>
           <button type="button" class="custom-btn1 mt-2 mb-3">Start Cooking</button>
