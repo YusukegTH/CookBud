@@ -21,6 +21,21 @@
 
     .review-comment {
       font-size: 16px;
+      font-style: italic;
     }
   }
+}
+
+.submit-review {
+  background-color: $white;
+  color: $c_primary;
+  border: 2px solid $c_primary;
+  padding: 16px;
+  border-radius: 4px;
+  font-weight: bold;
+  width: 100%;
+}
+
+.rating-container {
+  margin-top: 16px;
 }
