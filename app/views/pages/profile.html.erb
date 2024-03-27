@@ -1,42 +1,85 @@
 <div class="profile-container">
-  <%= link_to 'Back', :back, class: 'back-button' %>
+   <div class="header-with-back-button">
+    <%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
+    <i class="back fa-solid fa-backward" style="color: #699158;"></i>
+  <% end %>
+   </div>
 
-  <div class="container mt-4 d-flex flex-column align-items-center">
-  <h1 class="fa-solid fa-user fa-3x profile-avatar"></h1>
+   <div class="user-avatar-container">
+    <i class="fa-solid fa-user fa-3x profile-avatar"></i>
   </div>
 
   <div class="user-info">
-    <h1><%= @user.first_name %> <%= @user.last_name %></h1>
-    <p class="username"> Username: <%= @user.username %></p>
-    <p class="email"> Email: <%= @user.email %></p>
+    <h1 class="user-fullname"><%= @user.first_name %> <%= @user.last_name %></h1>
+    <p class="username"><strong>Username : </strong> <%= @user.username %></p>
+    <p class="email"> <strong>Email : </strong> <%= @user.email %></p>
   </div>
 
   <div class="preferences">
     <div class="preferences-header">
-      <h2>Preferences</h2>
+      <h2 class="preferences-title">Preferences</h2>
       <%= link_to '#', class: 'edit-icon' do %>
+        <i class="fas fa-pencil-alt"></i>
       <% end %>
     </div>
+
     <div class="preferences-body">
-      <p>Appliances:</p>
-      <% @user.preference.appliances.each do |appliance| %>
-        <span class="tag"><%= appliance %></span>
-      <% end %>
+      <p class="appliance-label"><strong>Appliances:</strong></p>
+      <div class="appliance-tags">
+        <% @user.preference.appliances.each do |appliance| %>
+          <p class="tag appliance-tag"><%= appliance %></p>
+        <% end %>
+      </div>
 
-      <p>Ingredients:</p>
-      <% @user.preference.ingredients.each do |ingredient| %>
-        <span class="tag"><%= ingredient %></span>
-      <% end %>
+      <p class="ingredient-label"><strong>Ingredients:</strong></p>
+      <div class="ingredient-tags d-flex flex-wrap">
+        <% @user.preference.ingredients.each do |ingredient| %>
+          <p class="tag ingredient-tag"><%= ingredient %></p>
+        <% end %>
+      </div>
     </div>
-    <%= link_to preference_edit_path do %>
-  <button class="custom-btn2">Edit Preferences</button>
-<% end %>
   </div>
+    <%= link_to preference_edit_path, class: 'custom-btn2' do %>
+      Edit Preferences
+    <% end %>
+</div>
 
-<div class="container">
-  <h3>My Favorites</h3>
-  <div class="favorites-list">
+
+
+<div class="container mt-3">
+<h3 class="recommend">My favorite recipes:</h3>
+  <div class="row">
     <% current_user.bookmarks.each do |bookmark| %>
+      <div class="space col-md-12 mb-4">
+        <div class="card recipe-card">
+          <%= link_to recipe_path(bookmark.recipe) do %>
+            <div class="image-container" style="background-image: url(<%= url_for(bookmark.recipe.photo) %>)"></div>
+            <div class="card-body">
+              <h3 class="card-title"><%= bookmark.recipe.name %></h3>
+              <p class="card-description"><%= bookmark.recipe.description[0,70] %>...</p>
+            </div>
+            <div class="card-footer d-flex justify-content-between">
+              <p><%= bookmark.recipe.difficulty.capitalize %></p>
+              <p><%= bookmark.recipe.duration %> min</p>
+            </div>
+          <% end %>
+          <div data-controller="bookmark" class="bookmarkcss">
+            <% if user_signed_in? %>
+            <%# If the recipe is already bookmarked %>
+              <% if current_user.bookmarks.find_by(recipe_id: bookmark.recipe.id) %>
+                <i data-action="click->bookmark#delete" data-bookmark-id="<%= bookmark.id %>" class="fa-solid fa-star" style="color: #669158;"></i>
+            <%# If the recipe isn't bookmarked yet %>
+              <% else %>
+                <i data-action="click->bookmark#add" data-recipe-id="<%= bookmark.recipe.id %>" data-user-id="<%= current_user.id %>" class="fa-regular fa-star" style="color: #669158;"></i>
+              <% end %>
+            <% else %>
+              <%= link_to new_user_session_path do %>
+                <i class="fa-regular fa-star" style="color: #669158;"></i>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
