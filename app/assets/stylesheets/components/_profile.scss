@@ -1,19 +1,20 @@
+.button-container {
+  text-align: center;
+  margin-top: 8px;
+}
+
 .custom-btn2 {
   padding: 16px;
   margin-top: 16px;
-  margin-left: auto;
-  margin-right: auto;
   background-color: $c_primary;
   color: $white;
   border: 2px solid $c_primary;
   border-radius: 4px;
-  text-align: center;
   font-weight: bold;
   font-size: 16px;
   position: relative;
-  display: block;
+  display: inline-block;
   width: 80%;
-  text-decoration: none;
 }
 
 .profile-avatar {
@@ -35,7 +36,6 @@
   justify-content: center;
   align-items: center;
 }
-
 
 .card-header {
   display: flex;
@@ -98,4 +98,3 @@
   border-radius: 0.25rem;
   margin-right: 0.5rem;
 }
-

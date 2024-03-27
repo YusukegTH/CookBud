@@ -3,10 +3,11 @@ class ReviewsController < ApplicationController
     @recipe = Recipe.find(params[:recipe_id])
     @review = @recipe.reviews.build(review_params)
     @review.user = current_user
+
     if @review.save
-      redirect_to @recipe, notice: 'Review was successfully created.'
+      redirect_to recipe_path(@review.recipe), notice: "Review was successfully created."
     else
-      redirect_to @recipe, alert: 'Failed to create review.'
+      redirect_to recipe_path(@recipe), alert: "Review wasn't created."
     end
   end
 

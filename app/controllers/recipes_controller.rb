@@ -6,6 +6,7 @@ class RecipesController < ApplicationController
 
   def show
     @recipe = Recipe.find(params[:id])
+    @reviews = @recipe.reviews.includes(:user)
   end
 
   private
