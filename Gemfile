@@ -2,6 +2,9 @@ source "https://rubygems.org"
 
 ruby "3.1.2"
 
+#meta-tags is a gem to help you set all kinds of meta tags in your views 
+gem 'meta-tags'
+
 # openai is a Ruby client for the OpenAI API
 gem "ruby-openai"
 

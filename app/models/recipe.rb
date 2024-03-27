@@ -5,7 +5,7 @@ class Recipe < ApplicationRecord
   has_many :bookmarks, dependent: :destroy
 
   # Validations
-  validates :name, presence: true
+  validates :name, presence: true, uniqueness: { case_sensitive: false }
   validates :description, presence: true
   validates :ingredients, presence: true
   validates :appliances, presence: true
