@@ -1,6 +1,5 @@
 <div class="simple_form form-group bg-white">
   <div data-controller="search-form">
-      <%# Appliances input %>
       <div class="my-3">
         <label class="form-label string required">Appliances</label>
         <div class="d-flex justify-content-start align-items-center">
@@ -21,7 +20,6 @@
           <% end %>
         </ul>
       </div>
-      <%# Ingredients input %>
       <div class="my-3">
         <label class="form-label string required">Ingredients</label>
         <div class="d-flex justify-content-start align-items-center">
@@ -42,7 +40,6 @@
           <% end %>
         </ul>
       </div>
-      <%# Diet input %>
       <div class="my-3">
         <label class="form-label string required">Diet</label>
         <div class="d-flex justify-content-start align-items-center">
@@ -63,7 +60,6 @@
           <% end %>
         </ul>
       </div>
-      <%# Allergies input %>
       <div class="my-3">
         <label class="form-label string required">Allergies</label>
         <div class="d-flex justify-content-start align-items-center">
@@ -84,7 +80,6 @@
           <% end %>
         </ul>
       </div>
-      <%# Level input %>
       <div class="my-3">
         <label class="form-label string required mt-3" for="search_level">Level<abbr title="required">*</abbr></label>
         <select id='level' class="form-control string required form-control" name="search[level]" id="search[level]">
@@ -107,7 +102,6 @@
           <% end %>
         </select>
       </div>
-      <%# Duration input %>
       <div class="my-3">
         <label class="form-label string required">Duration</label>
         <div class="d-flex justify-content-start align-items-center">
@@ -116,7 +110,6 @@
         </ul>
       </div>
 
-      <%# Submit search %>
       <div class="d-flex justify-content-center">
         <button class="btn btn-info" data-action="click->search-form#search">Search</button>
       </div>

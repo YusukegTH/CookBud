@@ -27,11 +27,9 @@
           <% end %>
           <div data-controller="bookmark" class="bookmarkcss">
             <% if user_signed_in? %>
-            <%# If the recipe is already bookmarked %>
               <% if current_user.bookmarks.find_by(recipe_id: recipe.id) %>
                 <% bookmark = current_user.bookmarks.find_by(recipe_id: recipe.id).id %>
                 <i data-action="click->bookmark#delete" data-bookmark-id="<%= bookmark %>" class="fa-solid fa-star" style="color: #669158;"></i>
-            <%# If the recipe isn't bookmarked yet %>
               <% else %>
                 <i data-action="click->bookmark#add" data-recipe-id="<%= recipe.id %>" data-user-id="<%= current_user.id %>" class="fa-regular fa-star" style="color: #669158;"></i>
               <% end %>

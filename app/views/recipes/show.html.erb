@@ -43,6 +43,17 @@
               <% review.user = current_user %>
               <% review.recipe = @recipe %>
               <%= render partial: "reviews/new_review_form", locals: { review: review } %>
+
+              <div class="review-section">
+                <h2 class="review-section-title">Reviews</h2>
+                <% @reviews.each do |review|%>
+                  <div class="review-user">
+                    <h3><%= review.user.username %></h3>
+                    <p class="review-stars"><%= '★' * review.rating %></p>
+                    <p class="review-comment"><%= review.comment %></p>
+                  </div>
+                <% end %>
+              </div>
             </div>
           </div>
         </div>
