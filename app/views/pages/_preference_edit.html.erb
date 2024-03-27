@@ -1,115 +1,110 @@
-<div class="simple_form form-group bg-white">
-  <div data-controller="preference-edit" data-preference-id="<%= current_user.preference.id %>" data-user-id="<%= current_user.id %>">
-      <%# Appliances input %>
-      <div class="my-3">
-        <label class="form-label string required">Appliances</label>
-        <div class="d-flex justify-content-start align-items-center">
-          <input class="form-control string required form-control mb-0 flex-grow-1" type="text">
-          <button class="border-0 bg-white mx-3" data-action="click->preference-edit#addToList"><i class="fa-solid fa-plus"></i></button>
-          <button class="border-0 bg-white mx-3" data-action="click->preference-edit#toggleList"><i class="fa-solid fa-caret-down"></i></button>
-        </div>
-        <ul class="list-group">
-          <% if user_signed_in? %>
-            <% current_user.preference.appliances.each do |appliance| %>
-              <li class="list-group-item bg-white">
-                <div class="d-flex justify-content-start align-items-center">
-                  <p id='appliances' class="my-1 flex-grow-1"> <%= appliance.capitalize %> </p>
-                  <div data-action="click->preference-edit#delete" class="mx-3"><i class="fa-solid fa-circle-xmark"></i></div>
-                </div>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
+<div data-controller="preference-edit" data-preference-id="<%= current_user.preference.id %>" data-user-id="<%= current_user.id %>">
+  <%# Appliances input %>
+  <div class="my-3">
+    <button data-action="click->preference-edit#toggleList" class="custom-btn dropdown-toggle" type="button">
+      My appliances
+    </button>
+    <div class="input-list" data-category="appliances">
+      <div class="m-3 d-flex justify-content-start align-items-center">
+        <input class="form-control string required form-control mb-0 flex-grow-1" type="text">
+        <button class="border-0 bg-white mx-3" data-action="click->preference-edit#addToList"><i class="fa-solid fa-plus"></i></button>
       </div>
-      <%# Ingredients input %>
-      <div class="my-3">
-        <label class="form-label string required">Ingredients</label>
-        <div class="d-flex justify-content-start align-items-center">
-          <input class="form-control string required form-control mb-0 flex-grow-1" type="text">
-          <button class="border-0 bg-white mx-3" data-action="click->preference-edit#addToList"><i class="fa-solid fa-plus"></i></button>
-          <button class="border-0 bg-white mx-3" data-action="click->preference-edit#toggleList"><i class="fa-solid fa-caret-down"></i></button>
-        </div>
-        <ul class="list-group">
-          <% if user_signed_in? %>
-            <% current_user.preference.ingredients.each do |ingredient| %>
-              <li class="list-group-item bg-white">
-                <div class="d-flex justify-content-start align-items-center">
-                  <p id='ingredients' class="my-1 flex-grow-1"> <%= ingredient.capitalize %> </p>
-                  <div data-action="click->preference-edit#delete" class="mx-3"><i class="fa-solid fa-circle-xmark"></i></div>
-                </div>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
+      <ul class="m-3 list-group">
+        <% current_user.preference.appliances.each do |appliance| %>
+          <li class="preference-list-item-box">
+            <p id='appliances' class="my-1 flex-grow-1"> <%= appliance.capitalize %> </p>
+            <div data-action="click->preference-edit#delete" class="mx-3" style="color: $c_primary;"><i class="fa-solid fa-xmark"></i></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <%# Ingredients input %>
+  <div class="my-3">
+    <button data-action="click->preference-edit#toggleList" class="custom-btn dropdown-toggle" type="button">
+      My ingredients
+    </button>
+    <div class="input-list" data-category="ingredients">
+      <div class="m-3 d-flex justify-content-start align-items-center">
+        <input class="form-control string required form-control mb-0 flex-grow-1" type="text">
+        <button class="border-0 bg-white mx-3" data-action="click->preference-edit#addToList"><i class="fa-solid fa-plus"></i></button>
       </div>
-      <%# Diet input %>
-      <div class="my-3">
-        <label class="form-label string required">Diet</label>
-        <div class="d-flex justify-content-start align-items-center">
-          <input class="form-control string required form-control mb-0 flex-grow-1" type="text">
-          <button class="border-0 bg-white mx-3" data-action="click->preference-edit#addToList"><i class="fa-solid fa-plus"></i></button>
-          <button class="border-0 bg-white mx-3" data-action="click->preference-edit#toggleList"><i class="fa-solid fa-caret-down"></i></button>
-        </div>
-        <ul class="list-group">
-          <% if user_signed_in? %>
-            <% current_user.preference.diet.each do |diet| %>
-              <li class="list-group-item bg-white">
-                <div class="d-flex justify-content-start align-items-center">
-                  <p id='diet' class="my-1 flex-grow-1"> <%= diet.capitalize %> </p>
-                  <div data-action="click->preference-edit#delete" class="mx-3"><i class="fa-solid fa-circle-xmark"></i></div>
-                </div>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-      <%# Allergies input %>
-      <div class="my-3">
-        <label class="form-label string required">Allergies</label>
-        <div class="d-flex justify-content-start align-items-center">
-          <input class="form-control string required form-control mb-0 flex-grow-1" type="text">
-          <button class="border-0 bg-white mx-3" data-action="click->preference-edit#addToList"><i class="fa-solid fa-plus"></i></button>
-          <button class="border-0 bg-white mx-3" data-action="click->preference-edit#toggleList"><i class="fa-solid fa-caret-down"></i></button>
-        </div>
-        <ul class="list-group">
-          <% if user_signed_in? %>
-            <% current_user.preference.allergies.each do |allergy| %>
-              <li class="list-group-item bg-white">
-                <div class="d-flex justify-content-start align-items-center">
-                  <p id='allergies' class="my-1 flex-grow-1"> <%= allergy.capitalize %> </p>
-                  <div data-action="click->preference-edit#delete" class="mx-3"><i class="fa-solid fa-circle-xmark"></i></div>
-                </div>
-              </li>
-            <% end %>
-          <% end %>
-        </ul>
-      </div>
-      <%# Level input %>
-      <div class="my-3">
-        <label class="form-label string required mt-3" for="search_level">Level<abbr title="required">*</abbr></label>
-        <select id='level' class="form-control string required form-control" name="search[level]" id="search[level]">
-          <% if user_signed_in? && current_user.preference.level == 'beginner' %>
-            <option value="beginner" selected='selected'>Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-          <% elsif user_signed_in? && current_user.preference.level == 'intermediate' %>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate" selected='selected'>Intermediate</option>
-            <option value="Advanced">Advanced</option>
-          <% elsif user_signed_in? && current_user.preference.level == 'advanced' %>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="Advanced" selected='selected'>Advanced</option>
-          <% else %>
-            <option value="beginner">Beginner</option>
-            <option value="intermediate">Intermediate</option>
-            <option value="Advanced">Advanced</option>
-          <% end %>
-        </select>
-      </div>
+      <ul class="m-3 list-group">
+        <% current_user.preference.ingredients.each do |ingredient| %>
+          <li class="preference-list-item-box">
+            <p id='ingredients' class="my-1 flex-grow-1"> <%= ingredient.capitalize %> </p>
+            <div data-action="click->preference-edit#delete" class="mx-3" style="color: $c_primary;"><i class="fa-solid fa-xmark"></i></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
 
-      <%# Submit search %>
-      <div class="d-flex justify-content-center">
-        <button class="btn btn-info" data-action="click->preference-edit#edit">Save preferences</button>
+  <%# Diet input %>
+  <div class="my-3">
+    <button data-action="click->preference-edit#toggleList" class="custom-btn dropdown-toggle" type="button">
+      My diet
+    </button>
+    <div class="input-list" data-category="diet">
+      <div class="m-3 d-flex justify-content-start align-items-center">
+        <input class="form-control string required form-control mb-0 flex-grow-1" type="text">
+        <button class="border-0 bg-white mx-3" data-action="click->preference-edit#addToList"><i class="fa-solid fa-plus"></i></button>
       </div>
+      <ul class="m-3 list-group">
+        <% current_user.preference.diet.each do |diet_item| %>
+          <li class="preference-list-item-box">
+            <p id='diet' class="my-1 flex-grow-1"> <%= diet_item.capitalize %> </p>
+            <div data-action="click->preference-edit#delete" class="mx-3" style="color: $c_primary;"><i class="fa-solid fa-xmark"></i></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <%# Allergies input %>
+  <div class="my-3">
+    <button data-action="click->preference-edit#toggleList" class="custom-btn dropdown-toggle" type="button">
+      My allergies
+    </button>
+    <div class="input-list" data-category="allergies">
+      <div class="m-3 d-flex justify-content-start align-items-center">
+        <input class="form-control string required form-control mb-0 flex-grow-1" type="text">
+        <button class="border-0 bg-white mx-3" data-action="click->preference-edit#addToList"><i class="fa-solid fa-plus"></i></button>
+      </div>
+      <ul class="m-3 list-group">
+        <% current_user.preference.allergies.each do |allergy| %>
+          <li class="preference-list-item-box">
+            <p id='allergies' class="my-1 flex-grow-1"> <%= allergy.capitalize %> </p>
+            <div data-action="click->preference-edit#delete" class="mx-3" style="color: $c_primary;"><i class="fa-solid fa-xmark"></i></div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <%# Level input %>
+  <div class="my-3">
+    <div class="preference-label">
+      <label for="search_level">My cooking level</label>
+    </div>
+    <select id='level' class="form-control string required form-control" name="search[level]" id="search[level]">
+      <% if current_user.preference.level == 'beginner' %>
+        <option value="beginner" selected='selected'>Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      <% elsif current_user.preference.level == 'intermediate' %>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate" selected='selected'>Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      <% elsif current_user.preference.level == 'advanced' %>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="Advanced" selected='selected'>Advanced</option>
+      <% else %>
+        <option value="beginner">Beginner</option>
+        <option value="intermediate">Intermediate</option>
+        <option value="Advanced">Advanced</option>
+      <% end %>
+    </select>
+  </div>
+  <%# Submit search %>
+  <button class="custom-btn2" data-action="click->preference-edit#edit">Save changes</button>
 </div>

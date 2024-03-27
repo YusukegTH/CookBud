@@ -1,7 +1,7 @@
-<div class="container text-center pt-5">
-  <h3>Recipe search</h3>
-  <%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
-    <i class="fa-solid fa-backward-step"></i>
-  <% end %>
-  <%= render partial: "pages/preference_edit" %>
+<div class="container mt-4">
+    <%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
+      <i class="back fa-solid fa-backward" style="color: #699158;"></i>
+    <% end %>
+    <h3 class="recommend">My preferences</h3>
+    <%= render partial: "pages/preference_edit" %>
 </div>
