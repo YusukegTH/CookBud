@@ -3,19 +3,19 @@ import { Controller } from "@hotwired/stimulus"
 // Connects to data-controller="search-form"
 export default class extends Controller {
 
+
   connect() {
     console.log("Connected!")
   }
 
   addToList(event) {
     event.preventDefault();
-    const idName = event.target.closest('div').parentNode.querySelector('label').innerText.toLowerCase();
-    const html = `<li class="list-group-item bg-white">
-            <div class="d-flex justify-content-start align-items-center">
-              <p id='${idName}' class="my-1 flex-grow-1">${event.target.closest('div').querySelector('input').value}</p>
-              <div data-action="click->search-form#delete" class="mx-3"><i class="fa-solid fa-circle-xmark"></i></div>
-            </div>
-          </li>`;
+    const idName = event.target.closest('div').parentNode.dataset.category;
+    console.log(idName);
+    const html = `<li class="preference-list-item-box">
+                    <p id='${idName}' class="my-1 flex-grow-1">${event.target.closest('div').querySelector('input').value}</p>
+                    <div data-action="click->search-form#delete" class="mx-3" style="color: $c_primary;"><i class="fa-solid fa-xmark"></i></div>
+                  </li>`;
 
     event.target.closest('div').parentNode.querySelector('ul').insertAdjacentHTML('afterbegin', html);
     event.target.closest('div').querySelector('input').value = "";
@@ -23,7 +23,7 @@ export default class extends Controller {
 
   toggleList(event) {
     event.preventDefault();
-    event.target.closest('div').parentNode.querySelector('ul').classList.toggle('d-none');
+    event.target.closest('div').querySelector('.input-list').classList.toggle('d-none');
   }
 
   delete(event) {

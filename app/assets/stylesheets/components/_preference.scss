@@ -1,0 +1,22 @@
+.preference-list-item-box{
+  display: flex;
+  height: 40px;
+  background-color: $white;
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 1px $c_primary;
+  padding-left: 3rem;
+  padding-right: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  border-radius: 20px;
+}
+
+.preference-label {
+  font-weight: bold;
+  color: $c_primary;
+  margin-bottom: 0.5rem;
+  text-align: center;
+}
