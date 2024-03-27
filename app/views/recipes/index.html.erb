@@ -15,7 +15,7 @@
       <div class="space col-md-12 mb-4">
         <div class="card recipe-card">
           <%= link_to recipe_path(recipe) do %>
-            <div class="image-container" style="background-image: url(<%= url_for(recipe.photo) %>)"></div>
+            <div class="image-container" style="background-image: url(<%= url_for(recipe.photo) %>)"><div id="card-grad"></div></div>
             <div class="card-body">
               <h3 class="card-title"><%= recipe.name %></h3>
               <p class="card-description"><%= recipe.description[0,70] %>...</p>
@@ -27,11 +27,9 @@
           <% end %>
           <div data-controller="bookmark" class="bookmarkcss">
             <% if user_signed_in? %>
-            <%# If the recipe is already bookmarked %>
               <% if current_user.bookmarks.find_by(recipe_id: recipe.id) %>
                 <% bookmark = current_user.bookmarks.find_by(recipe_id: recipe.id).id %>
                 <i data-action="click->bookmark#delete" data-bookmark-id="<%= bookmark %>" class="fa-solid fa-star" style="color: #669158;"></i>
-            <%# If the recipe isn't bookmarked yet %>
               <% else %>
                 <i data-action="click->bookmark#add" data-recipe-id="<%= recipe.id %>" data-user-id="<%= current_user.id %>" class="fa-regular fa-star" style="color: #669158;"></i>
               <% end %>

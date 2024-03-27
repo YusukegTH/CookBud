@@ -1,3 +1,8 @@
+.button-container {
+  text-align: center;
+  margin-top: 8px;
+}
+
 .custom-btn2 {
   padding: 16px;
   margin-top: 100px;
@@ -8,13 +13,11 @@
   color: $white;
   border: 2px solid $c_primary;
   border-radius: 4px;
-  text-align: center;
   font-weight: bold;
   font-size: 16px;
   position: relative;
-  display: block;
-  width: 80%;
-  text-decoration: none;
+  display: inline-block;
+  width: 100%;
 }
 
 .profile-avatar {
@@ -37,11 +40,12 @@
 }
 
 .user-avatar-container {
-  display: flex;
-  justify-content: center;
-  width: 100%;
+  .card-header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
 }
-
 .preferences-header {
   margin-top: 20px;
   margin-bottom: 20px;
