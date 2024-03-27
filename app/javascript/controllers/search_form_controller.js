@@ -23,6 +23,8 @@ export default class extends Controller {
 
   toggleList(event) {
     event.preventDefault();
+    event.target.classList.toggle('custom-btn-active');
+    event.target.classList.toggle('custom-btn');
     event.target.closest('div').querySelector('.input-list').classList.toggle('d-none');
   }
 

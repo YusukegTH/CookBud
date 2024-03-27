@@ -1,7 +1,7 @@
 <div data-controller="preference-edit" data-preference-id="<%= current_user.preference.id %>" data-user-id="<%= current_user.id %>">
   <%# Appliances input %>
   <div class="my-3">
-    <button data-action="click->preference-edit#toggleList" class="custom-btn dropdown-toggle" type="button">
+    <button data-action="click->preference-edit#toggleList" class="custom-btn-active dropdown-toggle" type="button">
       My appliances
     </button>
     <div class="input-list" data-category="appliances">
@@ -21,7 +21,7 @@
   </div>
   <%# Ingredients input %>
   <div class="my-3">
-    <button data-action="click->preference-edit#toggleList" class="custom-btn dropdown-toggle" type="button">
+    <button data-action="click->preference-edit#toggleList" class="custom-btn-active dropdown-toggle" type="button">
       My ingredients
     </button>
     <div class="input-list" data-category="ingredients">
@@ -42,7 +42,7 @@
 
   <%# Diet input %>
   <div class="my-3">
-    <button data-action="click->preference-edit#toggleList" class="custom-btn dropdown-toggle" type="button">
+    <button data-action="click->preference-edit#toggleList" class="custom-btn-active dropdown-toggle" type="button">
       My diet
     </button>
     <div class="input-list" data-category="diet">
@@ -62,7 +62,7 @@
   </div>
   <%# Allergies input %>
   <div class="my-3">
-    <button data-action="click->preference-edit#toggleList" class="custom-btn dropdown-toggle" type="button">
+    <button data-action="click->preference-edit#toggleList" class="custom-btn-active dropdown-toggle" type="button">
       My allergies
     </button>
     <div class="input-list" data-category="allergies">
