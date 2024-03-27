@@ -1,9 +1,9 @@
-<div class="profile-container">
-   <div class="header-with-back-button">
+<div class="container mt-4">
     <%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
-    <i class="back fa-solid fa-backward" style="color: #699158;"></i>
-  <% end %>
-   </div>
+      <i class="back fa-solid fa-backward" style="color: #699158;"></i>
+    <% end %>
+</div>
+<div class="profile-container">
 
    <div class="user-avatar-container">
     <i class="fa-solid fa-user fa-3x profile-avatar"></i>
@@ -38,19 +38,12 @@
         <% end %>
       </div>
     </div>
-<<<<<<< HEAD
-=======
     <div class="button-container">
-    <%= link_to preference_edit_path do %>
-  <button class="custom-btn2">Edit Preferences</button>
-<% end %>
-</div>
->>>>>>> 057292a294cb1ac4eebf5e7fe748ed30415d067e
-  </div>
-    <%= link_to preference_edit_path, class: 'custom-btn2' do %>
-      Edit Preferences
-    <% end %>
-</div>
+      <%= link_to preference_edit_path do %>
+        <button class="custom-btn2">Edit Preferences</button>
+      <% end %>
+    </div>
+
 
 
 

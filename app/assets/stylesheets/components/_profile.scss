@@ -1,14 +1,20 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .button-container {
   text-align: center;
   margin-top: 8px;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .custom-btn2 {
   padding: 16px;
-  margin-top: 100px;
-  margin-bottom: 70px;
-  margin-left: auto;
-  margin-right: auto;
+  margin-top: 16px;
+  margin-bottom: 16px;
   background-color: $c_primary;
   color: $white;
   border: 2px solid $c_primary;
@@ -23,6 +29,8 @@
 .profile-avatar {
   width: 100px;
   height: 100px;
+  margin-top: 24px;
+  padding: 24px;
   object-fit: cover;
   background-color: $white;
   border: 1px solid $c_primary;
@@ -46,6 +54,7 @@
     width: 100%;
   }
 }
+
 .preferences-header {
   margin-top: 20px;
   margin-bottom: 20px;
@@ -99,12 +108,4 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.back-button {
-  &:hover {
-    text-decoration: none;
-  }
-  margin-left: 10px;
-  position: fixed;
 }
