@@ -23,7 +23,7 @@
           <button data-action="click->dropdown#toggle" class="custom-btn dropdown-toggle" type="button">
             Steps
           </button>
-          <div class="d-none recipe-dropdown">
+          <div class="d-none recipe-dropdown" id="recipeSteps">
             <div class="card card-body">
               <ol>
                 <% JSON.parse(@recipe.instructions).each do |instruction| %>
