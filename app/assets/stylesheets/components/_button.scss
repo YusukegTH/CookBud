@@ -78,3 +78,16 @@
   position: relative;
 }
 
+.logout-button{
+  width: 100%;
+  padding: 0.5rem 1rem;
+  margin-top: 0.5rem;
+  background-color: $white;
+  color: $red;
+  border: 2px solid $red;
+  border-radius: 4px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 16px;
+  position: relative;
+}

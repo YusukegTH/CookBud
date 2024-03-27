@@ -10,17 +10,24 @@
   </div>
 
   <div class="user-info">
-    <h1 class="user-fullname"><%= @user.first_name %> <%= @user.last_name %></h1>
+    <div class="d-flex justify-content-center align-items-center">
+      <h1 class="user-fullname"><%= @user.first_name %> <%= @user.last_name %></h1>
+      <div class="mx-3">
+        <%= link_to edit_user_registration_path, class: 'text-black' do %>
+          <i class="fa-solid fa-pen-to-square"></i>
+        <% end %>
+      </div>
+    </div>
     <p class="username"><strong>Username : </strong> <%= @user.username %></p>
     <p class="email"> <strong>Email : </strong> <%= @user.email %></p>
+    <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
+      <button class="logout-button">Logout</button>
+    <% end %>
   </div>
 
   <div class="preferences">
     <div class="preferences-header">
       <h2 class="preferences-title">Preferences</h2>
-      <%= link_to '#', class: 'edit-icon' do %>
-        <i class="fas fa-pencil-alt"></i>
-      <% end %>
     </div>
 
     <div class="preferences-body">
