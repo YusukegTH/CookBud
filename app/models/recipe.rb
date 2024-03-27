@@ -14,4 +14,7 @@ class Recipe < ApplicationRecord
   validates :difficulty, presence: true
   validates :diet, presence: true
 
+  def average_rating
+    reviews.average(:rating)
+  end
 end

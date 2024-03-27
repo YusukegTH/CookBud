@@ -19,11 +19,24 @@ class PagesController < ApplicationController
   end
 
   def search_results
-    @search = search_preference
-    @filtered_recipes = filter_with_preference(@search)
-    @search_ai = searchAi(@search)
-    @image_ai = imageAi
-    @filtered_recipes.append(@recipe)
+    if !JSON.parse(params[:generate]) # Comming from search page
+      @search = search_results_params
+      @filtered_recipes = filter_with_preference(@search)
+      @generated_recipes = ""
+    elsif JSON.parse(params[:generate])
+      @search = search_results_params
+      @filtered_recipes = get_filtered_results
+      if params[:generated_recipes] == "[]" # First time generating AI recipe
+        raise
+        @generated_recipes = [searchAi(@search)]
+      else # When AI recipes have already been generated
+        raise
+        @generated_recipes = get_filtered_results
+      end
+    end
+    # @search_ai = searchAi(@search)
+    # @image_ai = imageAi
+    # @filtered_recipes.append(@recipe)
   end
 
   def preference_edit
@@ -33,33 +46,32 @@ class PagesController < ApplicationController
   private
 
   # makes a prompt to OpenAI API to generate a photo
-  def imageAi
+  def imageAi(recipe)
     client = OpenAI::Client.new
-    response = client.images.generate(parameters: { prompt: "delicous picture of #{@recipe.name}", size: "512x512" })
-    @url = response.dig("data", 0, "url")
-    return @url
+    response = client.images.generate(parameters: { prompt: "delicous picture of #{recipe.name}", size: "512x512" })
+    response.dig("data", 0, "url")
   end
 
   # makes a prompt to OpenAI API to generate a recipe and call the imageAi method to attach a photo to the recipe
   def searchAi(search)
-    @content = set_recipe_content(search)
-    recipe_string = @content
+    content = set_recipe_content(search)
+    recipe_string = content
     recipe_name_match = recipe_string.match(/Name: (.+)(?=Ingredients:)/m)
-    @recipe_name = recipe_name_match ? recipe_name_match[1] : "Not specified"
+    recipe_name = recipe_name_match ? recipe_name_match[1] : "Not specified"
     ingredients_match = recipe_string.match(/Ingredients: (.+)(?=Duration:)/m)
-    @ingredients = ingredients_match ? ingredients_match[1] : "Not specified"
+    ingredients = ingredients_match ? ingredients_match[1] : "Not specified"
     difficulty_match = recipe_string.match(/Difficulty: (.+)(?=Description:)/m)
-    @difficulty = difficulty_match ? difficulty_match[1] : "Not specified"
+    difficulty = difficulty_match ? difficulty_match[1] : "Not specified"
     duration_match = recipe_string.match(/Duration: (\d+)/)
-    @duration = duration_match ? duration_match[1] : "Not specified"
+    duration = duration_match ? duration_match[1] : "Not specified"
     description_match = recipe_string.match(/Description: (.+)/)
-    @description = description_match ? description_match[1] : "Not specified"
+    description = description_match ? description_match[1] : "Not specified"
     instruction_match = recipe_string.match(/Steps:.*/m)
-    @instructions = instruction_match ? instruction_match : "Not specified"
-    @recipe = Recipe.new(name: @recipe_name, ingredients: @ingredients, appliances: User.last.preference.appliances.join(', '), instructions: @instructions, difficulty: @difficulty, duration: @duration, description: @description, diet: User.last.preference.diet.join(', '))
-    file = URI.open(imageAi)
-    @recipe.photo.attach(io: file, filename: "#{@recipe_name}.jpg", content_type: "image/png")
-    @recipe.save!
+    instructions = instruction_match ? instruction_match : "Not specified"
+    recipe = Recipe.new(name: recipe_name, ingredients: ingredients, appliances: User.last.preference.appliances.join(', '), instructions: instructions, difficulty: difficulty, duration: duration, description: description, diet: User.last.preference.diet.join(', '))
+    file = URI.open(imageAi(recipe))
+    recipe.photo.attach(io: file, filename: "#{recipe_name}.jpg", content_type: "image/png")
+    recipe
   end
 
   def set_recipe_content(search)
@@ -70,19 +82,40 @@ class PagesController < ApplicationController
       model: "gpt-3.5-turbo",
       messages: [{ role: "user", content: prompt}]
     })
-    @content = chaptgpt_response["choices"][0]["message"]["content"]
+    chaptgpt_response["choices"][0]["message"]["content"]
   end
 
-  def search_preference
-    preference = {}
-    params[:appliances].size > 1 ? preference[:appliances] = params[:appliances].chop.split(',') : preference[:appliances] = ""
-    params[:ingredients].size > 1 ? preference[:ingredients] = params[:ingredients].chop.split(',') : preference[:ingredients] = ""
-    params[:diet].size > 1 ? preference[:diet] = params[:diet].chop.split(',') : preference[:diet] = ""
-    params[:allergies].size > 1 ? preference[:allergies] = params[:allergies].chop.split(',') : preference[:allergies] = ""
-    preference[:level] = params[:level]
-    preference[:duration] = params[:duration]
-    preference
+  def search_results_params
+    page_params = {}
+    search = JSON.parse(params[:search])
+    search["appliances"].size > 1 ? page_params[:appliances] = search["appliances"] : page_params[:appliances] = ""
+    search["ingredients"].size > 1 ? page_params[:ingredients] = search["ingredients"] : page_params[:ingredients] = ""
+    search["diet"].size > 1 ? page_params[:diet] = search["diet"] : page_params[:diet] = ""
+    search["allergies"].size > 1 ? page_params[:allergies] = search["allergies"] : page_params[:allergies] = ""
+    page_params[:level] = search["level"]
+    page_params[:duration] = search["duration"]
+    page_params
   end
+
+  def get_filtered_results
+    filtered_recipes = []
+    JSON.parse(params[:filtered_recipes]).each { |recipe_id| filtered_recipes << Recipe.find(recipe_id.to_i)}
+    filtered_recipes
+  end
+
+  # def get_generated_recipes
+  #   generated_recipes = []
+  #   JSON.parse(params[:generated_recipes]).each do |recipe|
+  #     recipe_attributes = {
+  #       name: recipe["name"],
+  #       ingredients: recipe["ingredients"],
+  #       appliances: recipe["appliances"],
+  #       instructions: recipe["instructions"],
+  #       difficulty: recipe["difficulty"],
+  #       duration: recipe["duration"],
+  #     }
+  #   end
+  # end
 
   # Search results algorithm
 
