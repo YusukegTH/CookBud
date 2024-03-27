@@ -1,13 +1,11 @@
-<div class="container mt-3">
-  <%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
-      <i class="fa-solid fa-backward-step"></i>
-  <% end %>
-</div>
-<div class="container mt-3">
-  <h3>Recipe search</h3>
-  <% if user_signed_in? %>
-    <%= render partial: "pages/search", user: @user %>
-  <% else %>
-    <%= render partial: "pages/search" %>
-  <% end %>
+<div class="container mt-4">
+    <%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
+      <i class="back fa-solid fa-backward" style="color: #699158;"></i>
+    <% end %>
+    <h3 class="recommend">Search options</h3>
+    <% if user_signed_in? %>
+      <%= render partial: "pages/search", user: @user %>
+    <% else %>
+      <%= render partial: "pages/search" %>
+    <% end %>
 </div>
