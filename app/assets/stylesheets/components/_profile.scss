@@ -1,6 +1,14 @@
+.profile-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .button-container {
   text-align: center;
   margin-top: 8px;
+  justify-content: center;
+  padding: 1rem;
 }
 
 .custom-btn2 {
@@ -36,31 +44,37 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
 }
 
-.card-header {
+.user-avatar-container {
+  .card-header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+}
+
+.preferences-header {
+  margin-top: 20px;
+  margin-bottom: 20px;
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
+  width: 100%;
 }
 
-.profile-info {
-  margin-bottom: 1.5rem;
+.appliance-label, .ingredient-label {
+  margin-left: 1rem;
 }
 
-.profile-info-item {
+
+.appliance-tags, .ingredient-tags {
   display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.info-label {
-  font-weight: bold;
-  margin-right: 0.5rem;
-}
-
-.edit-icon {
-  margin-left: auto;
+  flex-wrap: wrap;
+  // margin-bottom: 0.5rem;
+  // margin-top: 0.5rem;
+  // margin-left: 40px;
 }
 
 .edit-icon {
@@ -72,30 +86,26 @@
   border-radius: 50%;
 }
 
-.preferences-section {
-  margin-top: 2rem;
-}
-
-.section-title {
-  margin-bottom: 1rem;
-}
-
-.preference-item {
-  display: flex;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.item-label {
-  font-weight: bold;
-  margin-right: 0.5rem;
-}
-
 .tag {
-  display: inline-block;
-  background-color: #f0f0f0;
-  color: #333;
-  padding: 0.25rem 0.5rem;
-  border-radius: 0.25rem;
-  margin-right: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 14px;
+  color: black;
+  background-color: white;
+  border-radius: 15px;
+  border: 1px solid #669158;
+  white-space: nowrap;
+  margin: 0.5rem;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  height: 30px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
