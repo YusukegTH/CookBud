@@ -27,10 +27,10 @@ class PagesController < ApplicationController
       @search = search_results_params
       @filtered_recipes = get_filtered_results
       if params[:generated_recipes] == "[]" # First time generating AI recipe
-        raise
+        
         @generated_recipes = [searchAi(@search)]
       else # When AI recipes have already been generated
-        raise
+
         @generated_recipes = get_filtered_results
       end
     end

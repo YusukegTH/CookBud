@@ -71,7 +71,9 @@
   z-index: 1;
   padding: 0;
   font-size: 1.5rem;
-  color: $c_secondary;
+  color: $c_primary;
+  opacity: 0.9;
+  text-shadow: 2px 2px 4px rgba(26, 26, 26, 0.2);
 }
 
 .recommend {
