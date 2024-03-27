@@ -15,7 +15,7 @@
       <div class="space col-md-12 mb-4">
         <div class="card recipe-card">
           <%= link_to recipe_path(recipe) do %>
-            <div class="image-container" style="background-image: url(<%= url_for(recipe.photo) %>)"></div>
+            <div class="image-container" style="background-image: url(<%= url_for(recipe.photo) %>)"><div id="card-grad"></div></div>
             <div class="card-body">
               <h3 class="card-title"><%= recipe.name %></h3>
               <p class="card-description"><%= recipe.description[0,70] %>...</p>
