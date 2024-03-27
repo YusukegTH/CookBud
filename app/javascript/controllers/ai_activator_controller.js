@@ -17,12 +17,6 @@ export default class extends Controller {
     event.preventDefault();
     const url = "/search_results";
     const search = JSON.parse(this.element.dataset.search);
-    let generated_recipes = [];
-    if (JSON.parse(this.element.dataset.generatedRecipes) != "") {
-      JSON.parse(this.element.dataset.generatedRecipes).forEach((element) => {
-        generated_recipes.push(element);
-      });
-    }
     let filtered_recipes = [];
     this.element.querySelectorAll(".search-results").forEach((element) => {
       filtered_recipes.push(element.dataset.recipeId);
@@ -31,8 +25,7 @@ export default class extends Controller {
     const params = new URLSearchParams({
       search: JSON.stringify(search),
       filtered_recipes: JSON.stringify(filtered_recipes),
-      generate: JSON.stringify(true),
-      generated_recipes: JSON.stringify(generated_recipes)
+      generate: JSON.stringify(true)
     });
     window.location.href = `${url}?${params}`;
   }
