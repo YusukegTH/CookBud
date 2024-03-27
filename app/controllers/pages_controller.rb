@@ -27,11 +27,11 @@ class PagesController < ApplicationController
       @search = search_results_params
       @filtered_recipes = get_filtered_results
       if params[:generated_recipes] == "[]" # First time generating AI recipe
+        raise
         @generated_recipes = [searchAi(@search)]
       else # When AI recipes have already been generated
-        @generated_recipes = get_filtered_results
-
         raise
+        @generated_recipes = get_filtered_results
       end
     end
     # @search_ai = searchAi(@search)
@@ -103,20 +103,19 @@ class PagesController < ApplicationController
     filtered_recipes
   end
 
-  def get_generated_recipes
-    generated_recipes = []
-    JSON.parse(params[:generated_recipes]).each do |recipe|
-      recipe_attributes = {
-        name: recipe["name"],
-        ingredients: recipe["ingredients"],
-        appliances: recipe["appliances"],
-        instructions: recipe["instructions"],
-        difficulty: recipe["difficulty"],
-        duration: recipe["duration"],
-      }
-    end
-
-  end
+  # def get_generated_recipes
+  #   generated_recipes = []
+  #   JSON.parse(params[:generated_recipes]).each do |recipe|
+  #     recipe_attributes = {
+  #       name: recipe["name"],
+  #       ingredients: recipe["ingredients"],
+  #       appliances: recipe["appliances"],
+  #       instructions: recipe["instructions"],
+  #       difficulty: recipe["difficulty"],
+  #       duration: recipe["duration"],
+  #     }
+  #   end
+  # end
 
   # Search results algorithm
 
