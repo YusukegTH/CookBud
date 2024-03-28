@@ -1,5 +1,10 @@
 <div class="container mt-3">
+<%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
+      <i class="back fa-solid fa-backward" style="color: #699158;"></i>
+    <% end %>
   <div data-controller="cooking" class="row">
+    <div class="d-flex justify-content-center p-3"><h1><%= title "Start cooking:" %></h1>
+    </div>
     <% JSON.parse(@recipe.instructions).each do |instruction| %>
       <div id="instruction" class="col-md-12 mb-4 d-none">
           <div class="card instruction-content d-flex flex-column p-3 justify-content-center align-items-center">

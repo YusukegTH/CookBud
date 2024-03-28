@@ -1,5 +1,5 @@
 <div class="container mt-3" data-controller="ai-activator" data-search="<%= @search.to_json %>">
-  <h3 class="recommend">Search Results</h3>
+  <h3 class="recommend"><%= title "Search Results" %></h3>
     <div class="row">
       <% @filtered_recipes.each do |recipe| %>
         <div class="space col-md-12 mb-4 search-results" data-recipe-id="<%= recipe.id %>">
