@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row justify-content-center pt-5">
     <div class="col-md-6">
-      <div class="card p-4">
-        <h2 class="text-center">Log in</h2>
+      <div class="log-card p-4">
+        <h2 class="text-center text-muted">Log in</h2>
 
         <%= simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }) do |f| %>
           <%= f.input :email,
@@ -13,7 +13,7 @@
                       required: false,
                       input_html: { autocomplete: "current-password", class: 'form-control' } %>
           <%= f.input :remember_me, as: :boolean if devise_mapping.rememberable? %>
-          <%= f.button :submit, "Log in", class: 'btn btn-primary btn-block' %>
+          <%= f.button :submit, "Log in", class: 'custom-logbtn' %>
         <% end %>
 
         <div class="d-flex justify-content-between mt-3">
