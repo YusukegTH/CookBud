@@ -116,22 +116,18 @@ test_user2_preference.save!
 # Recipe 1
 
 test_recipe1_attributes = {
-  name: "Spaghetti Bolognese",
-  description: "A classic Italian dish that is easy to make and delicious to eat.",
-  ingredients: ["spaghetti", "ground beef", "tomatoes", "onions", "garlic", "olive oil", "salt", "pepper", "bacon"],
-  appliances: ["oven", "blender", "toaster", "microwave", "hot plate", "frying pan", "knife", "cutting board", "pan", "pot"],
-  instructions: ["Put a large saucepan on a medium heat and add 1 tbsp olive oil",
-                  "Add 4 finely chopped bacon rashers and fry for 10 mins until golden and crisp.",
-                  "Reduce the heat and add the 2 onions, 2 carrots and 2 garlic cloves, all finely chopped, then fry for 10 mins. Stir the veg often until it softens.",
-                  "Increase the heat to medium-high, add 500g beef mince and cook stirring for 3-4 mins until the meat is browned all over",
-                  "Add 2 tins plum tomatoes, 2 tbsp tomato purée and 125ml red wine, Stir with a wooden spoon, breaking up the plum tomatoes",
-                  "Bring to the boil, reduce to a gentle simmer and cover with a lid. Cook for 1 hr, then remove the lid and cook for another 30 mins",
-                  "Add the 75g cheese, check the seasoning and stir.",
-                  "When the bolognese is nearly finished, cook 400g spaghetti following the pack instructions.",
-                  "Drain the spaghetti and either stir into the bolognese sauce, or serve the sauce on top. Serve with more grated parmesan, the remaining basil leaves and crusty bread, if you like."
-                ],
-  duration: 90,
-  difficulty: "intermediate",
+  name: "Honey Soy Glazed Salmon",
+  description: "An easy and flavorful salmon dish with a sweet and savory glaze, ready in no time for a nutritious meal.",
+  ingredients: ["salmon fillets", "soy sauce", "honey", "garlic", "ginger", "olive oil", "green onions", "sesame seeds"],
+  appliances: ["frying pan", "bowl", "whisk", "knife", "cutting board"],
+  instructions: [
+    "In a bowl, whisk together soy sauce, honey, minced garlic, and grated ginger to make the glaze.",
+    "Heat olive oil in a pan over medium heat and sear the salmon fillets, skin-side up, until golden.",
+    "Flip the salmon, pour the glaze over, and continue cooking while spooning the glaze over the salmon until it's cooked through.",
+    "Garnish with sliced green onions and sesame seeds before serving."
+  ],
+  duration: 30,
+  difficulty: "Beginner",
   diet: []
 }
 
@@ -146,21 +142,20 @@ test_recipe1.save!
 # Recipe 2
 
 test_recipe2_attributes = {
-  name: "Vegetarian Stir Fry",
-  description: "A quick and easy vegetarian stir fry that is perfect for a weeknight dinner.",
-  ingredients: ["rice", "soy sauce", "vegetables", "onions", "garlic", "olive oil", "salt", "pepper"],
-  appliances: ["oven", "blender", "toaster", "microwave", "hot plate", "frying pan", "knife", "cutting board", "pan", "pot"],
-  instructions: ["Cook the rice according to the package instructions.",
-                  "Heat 2 tbsp olive oil in a large frying pan over medium heat.",
-                  "Add 1 chopped onion and 2 minced garlic cloves and cook until soft.",
-                  "Add 4 cups of chopped vegetables and cook until tender.",
-                  "Add the cooked rice and 1/4 cup soy sauce and stir to combine.",
-                  "Season with salt and pepper to taste.",
-                  "Serve hot."
-                ],
-  duration: 30,
-  difficulty: "beginner",
-  diet: ["vegetarian"]
+  name: "Garlic Butter Shrimp Pasta",
+  description: "A simple yet delicious pasta dish featuring succulent shrimp tossed in garlic butter sauce, perfect for a quick dinner.",
+  ingredients: ["pasta", "shrimp", "butter", "garlic", "lemon juice", "parsley", "salt", "pepper", "olive oil"],
+  appliances: ["pot", "frying pan", "colander", "knife", "cutting board"],
+  instructions: [
+    "Cook pasta according to package instructions, then drain and set aside.",
+    "Heat olive oil in a pan over medium heat and cook shrimp until pink and opaque.",
+    "Add minced garlic to the pan and sauté until fragrant.",
+    "Stir in butter and lemon juice until the butter melts and the sauce is combined.",
+    "Toss the cooked pasta in the garlic butter sauce, season with salt and pepper, and garnish with chopped parsley before serving."
+  ],
+  duration: 20,
+  difficulty: "Beginner",
+  diet: []
 }
 
 test_recipe2 = Recipe.new(test_recipe2_attributes)
@@ -174,21 +169,21 @@ test_recipe2.save!
 # Recipe 3
 
 test_recipe3_attributes = {
-  name: "Peanut Butter Cookies",
-  description: "A classic cookie that is perfect for peanut butter lovers.",
-  ingredients: ["peanut butter", "sugar", "eggs", "flour", "baking soda", "salt"],
-  appliances: ["oven", "blender", "toaster", "microwave", "hot plate", "frying pan", "knife", "cutting board", "pan", "pot"],
-  instructions: ["Preheat the oven to 350°F (180°C).",
-                  "In a large bowl, mix 1 cup of peanut butter, 1 cup of sugar, 1 egg, 1 cup of flour, 1/2 tsp of baking soda, and a pinch of salt until well combined.",
-                  "Roll the dough into balls and place them on a baking sheet lined with parchment paper.",
-                  "Press each ball with a fork to create a crisscross pattern.",
-                  "Bake for 10-12 minutes or until golden brown.",
-                  "Let the cookies cool on the baking sheet for 5 minutes before transferring them to a wire rack to cool completely."
-                ],
-  duration: 30,
-  difficulty: "beginner",
-  diet: []
-}
+  name: "Creamy Mushroom Pasta",
+  description: "A rich and creamy pasta dish that's quick and easy to make.",
+  ingredients: ["pasta", "mushrooms", "garlic", "heavy cream", "parmesan cheese", "olive oil", "salt", "pepper"],
+  appliances: ["pot", "frying pan", "colander", "knife", "cutting board"],
+  instructions: [
+    "Cook the pasta according to package instructions and drain.",
+    "In a frying pan, heat olive oil over medium heat and sauté garlic until fragrant.",
+    "Add sliced mushrooms and cook until browned.",
+    "Lower the heat and add heavy cream and parmesan cheese, stirring until the sauce thickens.",
+    "Combine the sauce with the cooked pasta, season with salt and pepper to taste, and serve."
+  ],
+  duration: 20,
+  difficulty: "Beginner",
+  diet: ["vegetarian"]
+},
 
 test_recipe3 = Recipe.new(test_recipe3_attributes)
 client = OpenAI::Client.new
@@ -198,5 +193,123 @@ file3 = URI.open(url3)
 test_recipe3.photo.attach(io: file3, filename: "#{test_recipe3.name}.jpg", content_type: "image/png")
 test_recipe3.save!
 
+test_recipe4_attributes = {
+  name: "Classic Tomato Soup",
+  description: "A comforting and simple tomato soup perfect for any day.",
+  ingredients: ["tomatoes", "onion", "garlic", "vegetable broth", "olive oil", "salt", "pepper", "cream"],
+  appliances: ["pot", "blender", "knife", "cutting board"],
+  instructions: [
+    "Dice the onion and garlic, then sauté in a pot with olive oil until soft.",
+    "Add chopped tomatoes and vegetable broth, bring to a boil, then simmer for 20 minutes.",
+    "Blend the soup until smooth, return to the pot, and stir in cream.",
+    "Season with salt and pepper, then serve hot with a garnish of your choice."
+  ],
+  duration: 30,
+  difficulty: "Beginner",
+  diet: ["vegetarian"]
+}
+
+test_recipe5_attributes = {
+  name: "Vegetable Quiche",
+  description: "A delicious and easy-to-make quiche packed with vegetables.",
+  ingredients: ["eggs", "milk", "flour", "butter", "cheese", "assorted vegetables", "salt", "pepper"],
+  appliances: ["oven", "mixing bowl", "whisk", "pie dish", "knife", "cutting board"],
+  instructions: [
+    "Preheat the oven and prepare the pie crust in a dish.",
+    "Whisk together eggs, milk, and flour.",
+    "Sauté vegetables until soft, then spread them evenly on the crust.",
+    "Pour the egg mixture over the vegetables, top with cheese.",
+    "Bake until the egg mixture is set and the top is golden brown.",
+    "Let cool slightly before serving."
+  ],
+  duration: 45,
+  difficulty: "Intermediate",
+  diet: ["vegetarian"]
+}
+
+test_recipe6_attributes = {
+  name: "Spicy Lentil Dahl",
+  description: "A hearty and flavorful lentil dish, spiced with traditional Indian flavors.",
+  ingredients: ["lentils", "onion", "garlic", "ginger", "turmeric", "cumin", "chili powder", "tomatoes", "vegetable broth", "cilantro"],
+  appliances: ["pot", "knife", "cutting board"],
+  instructions: [
+    "Rinse lentils and set aside.",
+    "Sauté onion, garlic, and ginger in a pot until golden.",
+    "Add spices and tomatoes, cook for a few minutes.",
+    "Add lentils and vegetable broth, simmer until lentils are soft.",
+    "Garnish with cilantro and serve with rice or naan."
+  ],
+  duration: 40,
+  difficulty: "Beginner",
+  diet: ["vegan"]
+}
+
+test_recipe7_attributes =  {
+  name: "Classic Beef Stroganoff",
+  description: "A rich and creamy beef stroganoff served over a bed of egg noodles, perfect for a comforting meal.",
+  ingredients: ["beef sirloin", "mushrooms", "onion", "garlic", "beef broth", "sour cream", "mustard", "egg noodles", "butter", "flour", "salt", "pepper"],
+  appliances: ["pot", "frying pan", "knife", "cutting board"],
+  instructions: [
+    "Slice beef into thin strips and season with salt and pepper.",
+    "Brown beef strips in a frying pan, then set aside.",
+    "In the same pan, sauté mushrooms, onion, and garlic.",
+    "Stir in flour and slowly add beef broth, creating a thick sauce.",
+    "Add mustard and sour cream, stirring until smooth. Return beef to the pan.",
+    "Serve the beef mixture over cooked egg noodles."
+  ],
+  duration: 45,
+  difficulty: "Intermediate",
+  diet: []
+}
+
+test_recipe8_attributes = {
+  name: "Seared Scallops with Herb Butter Sauce",
+  description: "Delicate scallops seared to perfection and drizzled with a flavorful herb butter sauce.",
+  ingredients: ["scallops", "butter", "garlic", "lemon juice", "parsley", "salt", "pepper", "olive oil"],
+  appliances: ["frying pan", "knife", "cutting board"],
+  instructions: [
+    "Pat scallops dry and season with salt and pepper.",
+    "Heat olive oil in a pan over high heat and sear scallops until golden brown on each side.",
+    "For the sauce, melt butter in a pan, add garlic, lemon juice, and parsley.",
+    "Pour the herb butter sauce over the seared scallops and serve immediately."
+  ],
+  duration: 30,
+  difficulty: "Intermediate",
+  diet: []
+}
+
+test_recipe9_attributes = {
+  name: "Homemade Spinach and Ricotta Ravioli",
+  description: "Fresh homemade ravioli filled with a creamy spinach and ricotta mixture, served with a sage butter sauce.",
+  ingredients: ["spinach", "ricotta cheese", "flour", "eggs", "parmesan cheese", "nutmeg", "salt", "pepper", "butter", "sage"],
+  appliances: ["mixing bowl", "pot", "frying pan", "pasta machine or rolling pin", "knife", "cutting board"],
+  instructions: [
+    "Mix flour and eggs to form a dough, knead well and let rest.",
+    "Cook spinach, chop finely, and mix with ricotta, parmesan, nutmeg, salt, and pepper.",
+    "Roll out pasta dough, place small amounts of filling on the dough, and cover with another layer of dough. Seal edges.",
+    "Boil ravioli until they float to the surface, then drain.",
+    "For the sauce, melt butter and add sage. Pour over ravioli before serving."
+  ],
+  duration: 120,
+  difficulty: "Advanced",
+  diet: []
+}
+
+test_recipe10_attributes = {
+  name: "Coq Au Vin",
+  description: "A classic French dish of chicken cooked in red wine with mushrooms, onions, and bacon.",
+  ingredients: ["chicken thighs", "bacon", "red wine", "chicken broth", "mushrooms", "pearl onions", "garlic", "thyme", "butter", "flour", "salt", "pepper"],
+  appliances: ["oven", "dutch oven or heavy pot", "knife", "cutting board"],
+  instructions: [
+    "Brown bacon in a pot, then remove. In the same pot, brown chicken thighs.",
+    "Add garlic, thyme, mushrooms, and pearl onions to the pot. Cook until onions are soft.",
+    "Sprinkle flour over the mixture, then add red wine and chicken broth. Bring to a boil.",
+    "Cover and transfer to the oven to bake until the chicken is tender.",
+    "Serve the chicken with the sauce and vegetables, garnished with cooked bacon."
+  ],
+  duration: 150,
+  difficulty: "Advanced",
+  diet: []
+}
 
 puts 'Seeding completed successfully!'
