@@ -4,7 +4,8 @@
       <i class="back fa-solid fa-backward" style="color: #699158;"></i>
     <% end %>
     <div class="col-lg-8 offset-lg-2">
-      <%= image_tag(@recipe.photo, alt: 'Recipe Photo', class: 'img-fluid rounded-2') %>
+      <div class="show-img-container" style="background-image: url(<%= url_for(@recipe.photo) %>)">
+      </div>
       <div class="recipe-head d-flex justify-content-between align-items-end mt-2 mb-2">
       <h1><%= title @recipe.name %></h1>
       <div>★ (<%= @recipe.average_rating || "0.0" %>)</div>
