@@ -87,12 +87,12 @@ class PagesController < ApplicationController
   def search_results_params
     page_params = {}
     search = JSON.parse(params[:search])
-    search["appliances"].size > 1 ? page_params[:appliances] = search["appliances"] : page_params[:appliances] = ""
-    search["ingredients"].size > 1 ? page_params[:ingredients] = search["ingredients"] : page_params[:ingredients] = ""
-    search["diet"].size > 1 ? page_params[:diet] = search["diet"] : page_params[:diet] = ""
-    search["allergies"].size > 1 ? page_params[:allergies] = search["allergies"] : page_params[:allergies] = ""
-    page_params[:level] = search["level"]
-    page_params[:duration] = search["duration"]
+    search["appliances"].size > 1 ? page_params[:appliances] = search["appliances"].map(&:strip) : page_params[:appliances] = ""
+    search["ingredients"].size > 1 ? page_params[:ingredients] = search["ingredients"].map(&:strip) : page_params[:ingredients] = ""
+    search["diet"].size > 1 ? page_params[:diet] = search["diet"].map(&:strip) : page_params[:diet] = ""
+    search["allergies"].size > 1 ? page_params[:allergies] = search["allergies"].map(&:strip) : page_params[:allergies] = ""
+    page_params[:level] = search["level"].strip
+    page_params[:duration] = search["duration"].strip
     page_params
   end
 

@@ -21,6 +21,20 @@
       <div data-controller="dropdown">
         <div class="mb-2">
           <button data-action="click->dropdown#toggle" class="custom-btn dropdown-toggle" type="button">
+            Ingredients
+          </button>
+          <div class="d-none recipe-dropdown" id="recipeSteps">
+            <div class="card card-body">
+              <div class="ingredient-tags d-flex flex-wrap">
+                <% JSON.parse(@recipe.ingredients).each do |ingredient| %>
+                  <p class="tag ingredient-tag"><%= ingredient %></p>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="mb-2">
+          <button data-action="click->dropdown#toggle" class="custom-btn dropdown-toggle" type="button">
             Steps
           </button>
           <div class="d-none recipe-dropdown" id="recipeSteps">
