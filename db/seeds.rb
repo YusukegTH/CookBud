@@ -132,10 +132,7 @@ test_recipe1_attributes = {
 }
 
 test_recipe1 = Recipe.new(test_recipe1_attributes)
-client = OpenAI::Client.new
-    response = client.images.generate(parameters: { prompt: "delicous picture of #{test_recipe1.name}", size: "512x512" })
-    url = response.dig("data", 0, "url")
-file = URI.open(url)
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Honey Soy Glazed Salmon.jpg'))
 test_recipe1.photo.attach(io: file, filename: "#{test_recipe1.name}.jpg", content_type: "image/png")
 test_recipe1.save!
 
@@ -159,11 +156,8 @@ test_recipe2_attributes = {
 }
 
 test_recipe2 = Recipe.new(test_recipe2_attributes)
-client = OpenAI::Client.new
-    response = client.images.generate(parameters: { prompt: "delicous picture of #{test_recipe2.name}", size: "512x512" })
-    url2 = response.dig("data", 0, "url")
-file2 = URI.open(url2)
-test_recipe2.photo.attach(io: file2, filename: "#{test_recipe2.name}.jpg", content_type: "image/png")
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Garlic Butter Shrimp Pasta.jpg'))
+test_recipe2.photo.attach(io: file, filename: "#{test_recipe2.name}.jpg", content_type: "image/png")
 test_recipe2.save!
 
 # Recipe 3
@@ -183,14 +177,11 @@ test_recipe3_attributes = {
   duration: 20,
   difficulty: "Beginner",
   diet: ["vegetarian"]
-},
+}
 
 test_recipe3 = Recipe.new(test_recipe3_attributes)
-client = OpenAI::Client.new
-    response = client.images.generate(parameters: { prompt: "delicous picture of #{test_recipe3.name}", size: "512x512" })
-    url3 = response.dig("data", 0, "url")
-file3 = URI.open(url3)
-test_recipe3.photo.attach(io: file3, filename: "#{test_recipe3.name}.jpg", content_type: "image/png")
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Creamy Mushroom Pasta.jpg'))
+test_recipe3.photo.attach(io: file, filename: "#{test_recipe3.name}.jpg", content_type: "image/png")
 test_recipe3.save!
 
 test_recipe4_attributes = {
@@ -208,6 +199,11 @@ test_recipe4_attributes = {
   difficulty: "Beginner",
   diet: ["vegetarian"]
 }
+
+test_recipe4 = Recipe.new(test_recipe4_attributes)
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Classic Tomato Soup.jpg'))
+test_recipe4.photo.attach(io: file, filename: "#{test_recipe4.name}.jpg", content_type: "image/png")
+test_recipe4.save!
 
 test_recipe5_attributes = {
   name: "Vegetable Quiche",
@@ -227,6 +223,11 @@ test_recipe5_attributes = {
   diet: ["vegetarian"]
 }
 
+test_recipe5 = Recipe.new(test_recipe5_attributes)
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Vegetable Quiche.jpg'))
+test_recipe5.photo.attach(io: file, filename: "#{test_recipe5.name}.jpg", content_type: "image/png")
+test_recipe5.save!
+
 test_recipe6_attributes = {
   name: "Spicy Lentil Dahl",
   description: "A hearty and flavorful lentil dish, spiced with traditional Indian flavors.",
@@ -243,6 +244,11 @@ test_recipe6_attributes = {
   difficulty: "Beginner",
   diet: ["vegan"]
 }
+
+test_recipe6 = Recipe.new(test_recipe6_attributes)
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Spicy Lentil Dahl.jpg'))
+test_recipe6.photo.attach(io: file, filename: "#{test_recipe6.name}.jpg", content_type: "image/png")
+test_recipe6.save!
 
 test_recipe7_attributes =  {
   name: "Classic Beef Stroganoff",
@@ -262,6 +268,11 @@ test_recipe7_attributes =  {
   diet: []
 }
 
+test_recipe7 = Recipe.new(test_recipe7_attributes)
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Classic Beef Stroganoff.jpg'))
+test_recipe7.photo.attach(io: file, filename: "#{test_recipe7.name}.jpg", content_type: "image/png")
+test_recipe7.save!
+
 test_recipe8_attributes = {
   name: "Seared Scallops with Herb Butter Sauce",
   description: "Delicate scallops seared to perfection and drizzled with a flavorful herb butter sauce.",
@@ -277,6 +288,11 @@ test_recipe8_attributes = {
   difficulty: "Intermediate",
   diet: []
 }
+
+test_recipe8 = Recipe.new(test_recipe8_attributes)
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Seared Scallops with Herb Butter Sauce.jpg'))
+test_recipe8.photo.attach(io: file, filename: "#{test_recipe8.name}.jpg", content_type: "image/png")
+test_recipe8.save!
 
 test_recipe9_attributes = {
   name: "Homemade Spinach and Ricotta Ravioli",
@@ -295,6 +311,11 @@ test_recipe9_attributes = {
   diet: []
 }
 
+test_recipe9 = Recipe.new(test_recipe9_attributes)
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Homemade Spinach and Ricotta Ravioli.jpg'))
+test_recipe9.photo.attach(io: file, filename: "#{test_recipe9.name}.jpg", content_type: "image/png")
+test_recipe9.save!
+
 test_recipe10_attributes = {
   name: "Coq Au Vin",
   description: "A classic French dish of chicken cooked in red wine with mushrooms, onions, and bacon.",
@@ -311,5 +332,10 @@ test_recipe10_attributes = {
   difficulty: "Advanced",
   diet: []
 }
+
+test_recipe10 = Recipe.new(test_recipe10_attributes)
+file = File.open(Rails.root.join('app', 'assets', 'images', 'Coq Au Vin.jpg'))
+test_recipe10.photo.attach(io: file, filename: "#{test_recipe10.name}.jpg", content_type: "image/png")
+test_recipe10.save!
 
 puts 'Seeding completed successfully!'
