@@ -2,7 +2,7 @@
     <%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
       <i class="back fa-solid fa-backward" style="color: #699158;"></i>
     <% end %>
-    <h3 class="recommend">Search options</h3>
+    <h3 class="recommend"><%= title "Search options" %></h3>
     <% if user_signed_in? %>
       <%= render partial: "pages/search", user: @user %>
     <% else %>
