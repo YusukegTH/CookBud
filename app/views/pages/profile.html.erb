@@ -1,6 +1,9 @@
-<div class="container mt-4">
+<div class="container mt-4 d-flex justify-content-between align-items-center">
     <%= link_to 'javascript:void(0)', onclick: 'window.history.back(); return false;' do %>
       <i class="back fa-solid fa-backward" style="color: #699158;"></i>
+    <% end %>
+    <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
+      <i class="fa-solid fa-right-from-bracket" style="color: #c11f1f;"></i>
     <% end %>
 </div>
 <div class="profile-container">
@@ -20,9 +23,6 @@
     </div>
     <p class="username"><strong>Username : </strong> <%= @user.username %></p>
     <p class="email"> <strong>Email : </strong> <%= @user.email %></p>
-    <%= link_to destroy_user_session_path, data: { turbo_method: :delete } do %>
-      <button class="logout-button">Logout</button>
-    <% end %>
   </div>
 
   <div class="preferences">
