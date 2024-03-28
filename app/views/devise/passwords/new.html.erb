@@ -1,8 +1,8 @@
 <div class="container">
   <div class="row justify-content-center pt-5">
     <div class="col-md-6">
-      <div class="card p-4">
-        <h2 class="text-center text-muted">Forgot your password?</h2>
+      <div class="reset-card p-4">
+        <h2 class="reset-h2 text-muted">Forgot your password?</h2>
 
         <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
           <%= f.error_notification %>
@@ -12,7 +12,7 @@
                       autofocus: true,
                       input_html: { autocomplete: "email", class: 'form-control' } %>
 
-          <%= f.button :submit, "Send me reset password instructions", class: 'btn btn-primary btn-block' %>
+          <%= f.button :submit, "Send reset link", class: 'reset-btn' %>
         <% end %>
 
         <div class="d-flex justify-content-between mt-3">
