@@ -74,9 +74,17 @@ test_user1_atttributes = {
   username: "johnny_p1"
 }
 
+# test_user1_preference_attributes = {
+#   appliances: ["blender", "whisk", "pot", "frying pan", "colander", "knife", "cutting board", "frying pan", "colander", "cutting board", "oven", "blender", "toaster", "microwave", "hot plate", "frying pan", "knife", "cutting board", "pan", "pot"].uniq,
+#   ingredients: ["tomatoes", "onion", "garlic", "vegetable broth", "olive oil", "salt", "pepper", "cream", "pasta", "mushrooms", "garlic", "heavy cream", "parmesan cheese", "olive oil", "salt", "pepper", "pasta", "shrimp", "butter", "garlic", "lemon juice", "parsley", "salt", "pepper", "olive oil", "salmon fillets", "soy sauce", "honey", "garlic", "ginger", "olive oil", "green onions", "sesame seeds", "salmon fillets", "peanut butter", "sugar", "eggs", "flour", "baking soda", "salt", "red wine", "salt", "pepper", "rice", "spaghetti", "tomatoes", "onions", "garlic", "olive oil", "butter", "sour cream", "milk", "cheese", "eggs", "flour", "sugar", "honey", "soy sauce", "vinegar", "mustard", "mayonnaise", "ketchup", "ground beef", "chicken breasts", "shrimp", "eggplant", "zucchini", "carrots", "bacon"].uniq,
+#   diet: [],
+#   allergies: [],
+#   level: "intermediate"
+# }
+
 test_user1_preference_attributes = {
-  appliances: ["oven", "blender", "toaster", "microwave", "hot plate", "frying pan", "knife", "cutting board", "pan", "pot"],
-  ingredients: ["peanut butter", "sugar", "eggs", "flour", "baking soda", "salt", "red wine", "salt", "pepper", "rice", "spaghetti", "tomatoes", "onions", "garlic", "olive oil", "butter", "sour cream", "milk", "cheese", "eggs", "flour", "sugar", "honey", "soy sauce", "vinegar", "mustard", "mayonnaise", "ketchup", "ground beef", "chicken breasts", "shrimp", "eggplant", "zucchini", "carrots", "bacon"],
+  appliances: ["pot", "blender", "knife", "cutting board", "frying pan", "bowl", "whisk", "knife", "cutting board", "pot", "frying pan", "colander", "knife", "cutting board", "pot", "frying pan", "colander", "knife", "cutting board"].uniq,
+  ingredients: ["tomatoes", "onion", "garlic", "vegetable broth", "olive oil", "salt", "pepper", "cream", "pasta", "mushrooms", "garlic", "heavy cream", "parmesan cheese", "olive oil", "salt", "pepper", "salmon fillets", "soy sauce", "honey", "garlic", "ginger", "olive oil", "green onions", "sesame seeds", "pasta", "shrimp", "butter", "garlic", "lemon juice", "parsley", "salt", "pepper", "olive oil"].uniq,
   diet: [],
   allergies: [],
   level: "intermediate"
@@ -127,7 +135,7 @@ test_recipe1_attributes = {
     "Garnish with sliced green onions and sesame seeds before serving."
   ],
   duration: 30,
-  difficulty: "Beginner",
+  difficulty: "beginner",
   diet: []
 }
 
@@ -151,7 +159,7 @@ test_recipe2_attributes = {
     "Toss the cooked pasta in the garlic butter sauce, season with salt and pepper, and garnish with chopped parsley before serving."
   ],
   duration: 20,
-  difficulty: "Beginner",
+  difficulty: "beginner",
   diet: []
 }
 
@@ -175,7 +183,7 @@ test_recipe3_attributes = {
     "Combine the sauce with the cooked pasta, season with salt and pepper to taste, and serve."
   ],
   duration: 20,
-  difficulty: "Beginner",
+  difficulty: "beginner",
   diet: ["vegetarian"]
 }
 
@@ -196,7 +204,7 @@ test_recipe4_attributes = {
     "Season with salt and pepper, then serve hot with a garnish of your choice."
   ],
   duration: 30,
-  difficulty: "Beginner",
+  difficulty: "beginner",
   diet: ["vegetarian"]
 }
 
@@ -219,7 +227,7 @@ test_recipe5_attributes = {
     "Let cool slightly before serving."
   ],
   duration: 45,
-  difficulty: "Intermediate",
+  difficulty: "intermediate",
   diet: ["vegetarian"]
 }
 
@@ -241,7 +249,7 @@ test_recipe6_attributes = {
     "Garnish with cilantro and serve with rice or naan."
   ],
   duration: 40,
-  difficulty: "Beginner",
+  difficulty: "beginner",
   diet: ["vegan"]
 }
 
@@ -264,7 +272,7 @@ test_recipe7_attributes =  {
     "Serve the beef mixture over cooked egg noodles."
   ],
   duration: 45,
-  difficulty: "Intermediate",
+  difficulty: "intermediate",
   diet: []
 }
 
@@ -285,7 +293,7 @@ test_recipe8_attributes = {
     "Pour the herb butter sauce over the seared scallops and serve immediately."
   ],
   duration: 30,
-  difficulty: "Intermediate",
+  difficulty: "intermediate",
   diet: []
 }
 
@@ -307,7 +315,7 @@ test_recipe9_attributes = {
     "For the sauce, melt butter and add sage. Pour over ravioli before serving."
   ],
   duration: 120,
-  difficulty: "Advanced",
+  difficulty: "advanced",
   diet: []
 }
 
@@ -329,7 +337,7 @@ test_recipe10_attributes = {
     "Serve the chicken with the sauce and vegetables, garnished with cooked bacon."
   ],
   duration: 150,
-  difficulty: "Advanced",
+  difficulty: "advanced",
   diet: []
 }
 

@@ -115,7 +115,8 @@ class PagesController < ApplicationController
     end
     search_results = search_results.where("duration <= ?", search[:duration].to_i) if search[:duration] != ""
     search_results.each do |recipe|
-      if contained_in?(recipe.appliances, search[:appliances]) && contained_in?(recipe.ingredients, search[:ingredients]) && contained_in?(recipe.diet, search[:diet])
+      # if contained_in?(recipe.appliances, search[:appliances]) && contained_in?(recipe.ingredients, search[:ingredients]) && contained_in?(recipe.diet, search[:diet])
+      if contained_in?(recipe.appliances, search[:appliances]) && contained_in?(recipe.ingredients, search[:ingredients])
         filtered_results << recipe
       end
     end

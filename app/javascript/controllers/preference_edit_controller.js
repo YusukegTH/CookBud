@@ -77,10 +77,11 @@ export default class extends Controller {
     // .then(response => response.json())
     .then(data => {
         console.log('Success:', params);
+        window.location.href = "/profile";
       })
     .catch((error) => {
       console.error('Error:', error);
     });
-    window.history.back();
+
   }
 }
