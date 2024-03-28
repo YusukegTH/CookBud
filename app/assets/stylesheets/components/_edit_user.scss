@@ -1,0 +1,26 @@
+.update-btn {
+  display: flex;
+  justify-content: space-between;
+}
+
+.custom-update {
+  background-color: $c_primary;
+  color: $white;
+}
+
+.custom-cancel {
+  background-color: #c11f1f;
+  color: $white;
+}
+
+.custom-back {
+  background-color: $c_primary;
+  margin-top: 8px;
+  border: 2px solid $c_primary;
+  width: 100%;
+}
+
+.edit-card {
+  border: 2px solid $c_primary;
+  border-radius: 4px;
+}
