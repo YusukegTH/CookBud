@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row justify-content-center pt-5">
     <div class="col-md-6">
-      <div class="card p-4">
+      <div class="signup-card p-4">
         <h2 class="text-center text-muted">Sign up</h2>
 
         <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -19,7 +19,7 @@
                       required: true,
                       input_html: { autocomplete: "new-password", class: 'form-control' } %>
 
-          <%= f.button :submit, "Sign up", class: 'btn btn-primary btn-block' %>
+          <%= f.button :submit, "Sign up", class: 'custom-signup' %>
         <% end %>
 
         <div class="d-flex justify-content-between mt-3">
